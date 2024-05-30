@@ -26,7 +26,17 @@ uniform float pulse_factor : hint_range(0.5, 1.0) = 1.0;
 uniform float pulse_rate = 10.0;
 uniform float phase : hint_range(0.0, 3.14) = 0.0;
 
+
+// Add this before your vertex shader.
+// Edit "Fcoef" to adjust for desirable view distance. Lesser number means further distance limit.
+uniform float Fcoef = 0.001;
+varying float gl_Position_z;
+
 void vertex() {
+	// Add this to your vertex shader.
+	vec4 gl_Position = MODELVIEW_MATRIX*vec4(VERTEX, 1.0);
+	gl_Position_z = gl_Position.z;
+
 	float z_dist = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).z;
 	float b = flare_distance/(z_dist + flare_distance);
 	float scale_mod = clamp(pow(abs(b), attenuation), 0.0, flare_size);
@@ -51,4 +61,5 @@ void fragment() {
 	* pow(COLOR.r, exponent / pulse) 
 	* intensity 
 	* pulse;
+	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }

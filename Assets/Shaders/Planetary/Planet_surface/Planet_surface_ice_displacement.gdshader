@@ -39,7 +39,17 @@ uniform float uv_shift_y = 0.0;
 
 const float pi = 3.1415926535;
 
+
+// Add this before your vertex shader.
+// Edit "Fcoef" to adjust for desirable view distance. Lesser number means further distance limit.
+uniform float Fcoef = 0.001;
+varying float gl_Position_z;
+
 void vertex() {
+	// Add this to your vertex shader.
+	vec4 gl_Position = MODELVIEW_MATRIX*vec4(VERTEX, 1.0);
+	gl_Position_z = gl_Position.z;
+
 	vec2 tex_position_x = VERTEX.yz / 1.0;
 	vec2 tex_position_y = VERTEX.xz / 1.0;
 	vec2 tex_position_z = VERTEX.xy / 1.0;
@@ -71,4 +81,5 @@ void fragment()
 	SPECULAR = specular+ice;
 	ROUGHNESS = roughness*ice;
 	METALLIC = metallic;
+	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }

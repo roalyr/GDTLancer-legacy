@@ -22,8 +22,21 @@ render_mode
 uniform vec4 albedo : hint_color;
 uniform float distance_fade_max = 5.0;
 
+// Add this before your vertex shader.
+// Edit \"Fcoef\" to adjust for desirable view distance. Lesser number means further distance limit.
+uniform float Fcoef = 0.001;
+varying float gl_Position_z;
+
+// Add this to your vertex shader.
+void vertex()
+{
+	vec4 gl_Position = MODELVIEW_MATRIX*vec4(VERTEX, 1.0);
+	gl_Position_z = gl_Position.z;
+}
+
 void fragment()
 {
+	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 	ALBEDO = albedo.rgb;
 	ALPHA *= clamp(smoothstep(0.0, distance_fade_max, length(VERTEX)), 1e-6, 1.0);
 }

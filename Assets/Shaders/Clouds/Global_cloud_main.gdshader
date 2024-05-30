@@ -41,6 +41,17 @@ uniform float color_multiplier_b = 1.0;
 
 const float pi = 3.1415926535;
 
+// Add this before your vertex shader.
+// Edit "Fcoef" to adjust for desirable view distance. Lesser number means further distance limit.
+uniform float Fcoef = 0.001;
+varying float gl_Position_z;
+
+// Add this to your vertex shader.
+void vertex()
+{
+	vec4 gl_Position = MODELVIEW_MATRIX*vec4(VERTEX, 1.0);
+	gl_Position_z = gl_Position.z;
+}
 
 void fragment()
 {
@@ -62,5 +73,5 @@ void fragment()
 		pow(ALBEDO.g, color_power_g)*color_multiplier_g,
 		pow(ALBEDO.b, color_power_b)*color_multiplier_b
 	);
-
+	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }

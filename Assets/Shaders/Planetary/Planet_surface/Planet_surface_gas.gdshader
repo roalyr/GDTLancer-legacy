@@ -51,6 +51,19 @@ uniform float rim_intensity = 0.1;
 const float pi = 3.1415926535;
 const vec3 WHITE = vec3(1.0,1.0,1.0);
 
+
+// Add this before your vertex shader.
+// Edit "Fcoef" to adjust for desirable view distance. Lesser number means further distance limit.
+uniform float Fcoef = 0.001;
+varying float gl_Position_z;
+
+// Add this to your vertex shader.
+void vertex()
+{
+	vec4 gl_Position = MODELVIEW_MATRIX*vec4(VERTEX, 1.0);
+	gl_Position_z = gl_Position.z;
+}
+
 void fragment()
 {
 	vec2 p = texture(major_detail_noise, -vec2(UV.x*1.0-TIME*major_detail_flow, UV.y*major_detail_scale)).xy;
@@ -78,4 +91,5 @@ void fragment()
 	ALBEDO *= surface_color.rgb;
 	ALBEDO += (1.0-rim)*rim_color.rgb*rim_intensity;
 	ROUGHNESS = 1.0;
+	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }

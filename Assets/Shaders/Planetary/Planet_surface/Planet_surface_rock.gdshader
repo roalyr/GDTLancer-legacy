@@ -38,7 +38,18 @@ uniform float uv_shift_y = 0.0;
 
 const float pi = 3.1415926535;
 
+
+// Add this before your vertex shader.
+// Edit "Fcoef" to adjust for desirable view distance. Lesser number means further distance limit.
+uniform float Fcoef = 0.001;
+varying float gl_Position_z;
+
 void vertex() {
+	
+	// Add this to your vertex shader.
+	vec4 gl_Position = MODELVIEW_MATRIX*vec4(VERTEX, 1.0);
+	gl_Position_z = gl_Position.z;
+
 	UV.x *= 0.5; UV.x += uv_shift_x;
 	UV.y *= 0.5; UV.y += uv_shift_y;
 }
@@ -56,4 +67,5 @@ void fragment()
 	
 	ALBEDO = albedo.rgb * detail_major * (detail_small * detail_micro + albedo_overlay.rgb);
 	ROUGHNESS = 1.0;
+	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }

@@ -23,6 +23,11 @@ uniform float feathering_outer : hint_range(0.0, 1.0) = 0.02;
 uniform float detail_decay_distance = 1e7;
 
 
+// Add this before your vertex shader.
+// Edit "Fcoef" to adjust for desirable view distance. Lesser number means further distance limit.
+uniform float Fcoef = 0.001;
+varying float gl_Position_z;
+
 // https://godotshaders.com/snippet/circle/
 // https://godotshaders.com/snippet/polar-coordinates/
 vec2 polar_coordinates(vec2 uv, vec2 center, float zoom, float repeat)
@@ -38,7 +43,12 @@ float circle(vec2 position, float radius, float feather)
 	return smoothstep(radius, radius + feather, length(position - vec2(0.5)));
 }
 
-
+// Add this to your vertex shader.
+void vertex()
+{
+	vec4 gl_Position = MODELVIEW_MATRIX*vec4(VERTEX, 1.0);
+	gl_Position_z = gl_Position.z;
+}
 
 void fragment(){
 	vec2 polar_uv = polar_coordinates(UV.xy, vec2(0.5), 0.3, 1.0);
@@ -48,4 +58,5 @@ void fragment(){
 	float fade = clamp(smoothstep(0.0, detail_decay_distance, length(VERTEX)), 0.0, 1.0);
 	ALBEDO = ring_mask * COLOR.rgb * albedo.rgb;
 	ALPHA = mask_outer * mask_inner * ring_mask * fade;
+	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }

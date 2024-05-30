@@ -25,7 +25,17 @@ uniform float scale_power = 1.0;
 uniform float threshold : hint_range(0,1) = 1.0;
 
 
+// Add this before your vertex shader.
+// Edit "Fcoef" to adjust for desirable view distance. Lesser number means further distance limit.
+uniform float Fcoef = 0.001;
+varying float gl_Position_z;
+
 void vertex() {
+	
+	vec4 gl_Position = MODELVIEW_MATRIX*vec4(VERTEX, 1.0);
+	gl_Position_z = gl_Position.z;
+
+	
 	VERTEX *= absolute_scale;
 	
     // get the vector from the object to the camera
@@ -57,4 +67,5 @@ void fragment()
 	float rim = clamp(pow(dt, rim_exponent)*rim_strength, 1e-6, alpha_clip);
 	ALBEDO = albedo.rgb*COLOR.rgb;
 	ALPHA = rim;
+	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }

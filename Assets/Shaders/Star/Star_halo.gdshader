@@ -35,7 +35,18 @@ uniform sampler2D displacement_texture;
 uniform float displacement_scale = 0.1;
 uniform float displacement_velocity = 0.02;
 
+
+// Add this before your vertex shader.
+// Edit "Fcoef" to adjust for desirable view distance. Lesser number means further distance limit.
+uniform float Fcoef = 0.001;
+varying float gl_Position_z;
+
 void vertex() {
+	
+	vec4 gl_Position = MODELVIEW_MATRIX*vec4(VERTEX, 1.0);
+	gl_Position_z = gl_Position.z;
+
+	
 	vec2 tex_position_x = VERTEX.yz - TIME*displacement_velocity;
 	vec2 tex_position_y = VERTEX.xz + TIME*displacement_velocity;
 	vec2 tex_position_z = VERTEX.xy - TIME*displacement_velocity;
@@ -63,4 +74,5 @@ void fragment()
 		+ core*core_color.rgb;
 		
 	ALPHA = rim;
+	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }

@@ -40,6 +40,19 @@ uniform float scale = 1.0;
 uniform float details_power = 1.0;
 uniform float specular_power = 1.0;
 
+
+// Add this before your vertex shader.
+// Edit "Fcoef" to adjust for desirable view distance. Lesser number means further distance limit.
+uniform float Fcoef = 0.001;
+varying float gl_Position_z;
+
+// Add this to your vertex shader.
+void vertex()
+{
+	vec4 gl_Position = MODELVIEW_MATRIX*vec4(VERTEX, 1.0);
+	gl_Position_z = gl_Position.z;
+}
+
 void fragment()
 {
 	
@@ -58,4 +71,5 @@ void fragment()
 	ALBEDO *= COLOR.rgb ;
 	EMISSION = emission.rgb * COLOR.rgb * emission_strength;
 	ROUGHNESS =  1.0 - details*roughness * pow((1.0 - roughness_rim), roughness_sharpness);
+	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }
