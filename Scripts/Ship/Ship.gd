@@ -85,19 +85,6 @@ func _ready():
 	# First initialize the camera "ship".
 	init_specific_ship(player_camera_ship.instance())
 	init_specific_ship(ship_phoenix_heavy.instance())
-
-
-
-func _physics_process(delta):
-	
-
-	if engine_delay_timer <= engine_delay_time:
-		engine_delay_timer += delta
-	else:
-		engine_delay_timer = 0.0
-		engine_delay = false
-
-		
 	
 
 
@@ -107,27 +94,7 @@ func _integrate_forces(state):
 	var vel = state.linear_velocity.length()
 	PlayerState.ship_linear_velocity = vel
 	
-	# Limit the velocity according to engine state.
-	if (vel > velocity_limmiter_1 and velocity_limiter_state == 0) or \
-		(vel > velocity_limmiter_2 and velocity_limiter_state == 1) or \
-		(vel > velocity_limmiter_3 and velocity_limiter_state == 2) or \
-		(vel > velocity_limmiter_4 and velocity_limiter_state == 3):
-		# engine_delay_time = engine_delay_time_base * engine_delay_lag_factor
-		is_accelerating(false)
-	else:
-		engine_delay_time = engine_delay_time_base
-	
-	
 	state.add_central_force(-global_transform.basis.z * PlayerState.acceleration)
-	
-	# Limiting by engine ticks. It is a hard rebase_limits.
-	# TODO: move capped velocity to constants.
-	if vel > 3e6 and self.continuous_cd:
-		self.continuous_cd = false
-		GameState.debug("disable ship CCD due to high velocity")
-	elif vel <= 3e6 and not self.continuous_cd:
-		self.continuous_cd = true
-		GameState.debug("enable ship CCD")
 
 
 	# AUTOPILOT
@@ -282,18 +249,14 @@ func init_ship():
 
 func adjust_exhaust():
 	
-	var a = log(max(PlayerState.accel_ticks - idle_engine_ticks, 1))
-	var accel_val = a + pow(a, pow(a, 12)*4.4e-8)
-	if accel_val > 1e3:
-		accel_val = 1e3
+	var accel_val = 100
 	var engines = current_ship.get_node("Engines")
 	for i in engines.get_children():
 		
 		var albedo = accel_val
 
 		# Adjust light intensity
-		if PlayerState.accel_ticks > idle_engine_ticks:
-			i.get_node("Engine_exhaust_light").light_energy = accel_val/5
+		if PlayerState.acceleration > 0:
 			i.get_node("Engine_exhaust_shapes").scale.z = accel_val
 			i.get_node("Engine_exhaust_shapes").scale.x = accel_val*1e-1
 			i.get_node("Engine_exhaust_shapes").scale.y = accel_val*1e-1
@@ -302,7 +265,6 @@ func adjust_exhaust():
 				i.get_node("Engine_exhaust_shapes").scale.y = exhaust_shape_size_xy_max
 			albedo = accel_val
 		else:
-			i.get_node("Engine_exhaust_light").light_energy = 0
 			i.get_node("Engine_exhaust_shapes").scale.z = 0
 			albedo = 0
 			
@@ -327,25 +289,14 @@ func adjust_exhaust():
 
 func is_accelerating(accelerating):
 
-	if PlayerState.acceleration < accel_max:
-		if accelerating and not engine_delay:
+	if accelerating:
 			
-			PlayerState.accel_ticks += tick_step
-			engine_delay = true
+		PlayerState.acceleration = 9e9
 			
 	
-	# Deceleration.
-	if not accelerating and (PlayerState.accel_ticks > idle_engine_ticks) and not engine_delay:
+	else:
 		
-		PlayerState.accel_ticks -= tick_step
-		engine_delay = true
-
-		
-		if PlayerState.accel_ticks < idle_engine_ticks:
-			PlayerState.accel_ticks = idle_engine_ticks
-
-	# Adjust acceleration factor.
-	PlayerState.acceleration = pow(pow(2.0, PlayerState.accel_ticks), accel_damp_factor)
+		PlayerState.acceleration = 0
 	
 	# Adjust visuals.
 	adjust_exhaust()

@@ -153,8 +153,6 @@ func camera_common_behavior():
 	var tmp_brightness = init_brightness.linear_interpolate(fin_brightness, 
 		get_physics_process_delta_time() * camera_brightness_velocity_factor)
 	# Needed to prevent artifacts.
-	var tmp_near = init_near.linear_interpolate(fin_near, 
-		get_physics_process_delta_time() * camera_z_near_velocity_factor)
 	
 	# Prevent camera from sliding forward.
 	tmp_push.x = camera_min_zoom + tmp_push.x
@@ -187,8 +185,7 @@ func camera_common_behavior():
 		1e-6, 
 		camera_brightness_max_delta)
 	
-	# Increasing camera Z near value prevents flickering.
-	$GameCamera.near = Constants.camera_near + tmp_near.x
+
 
 
 

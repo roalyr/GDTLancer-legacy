@@ -9,11 +9,9 @@
 [sub_resource type="SphereMesh" id=1]
 
 [sub_resource type="OpenSimplexNoise" id=5]
-period = 58.0
+period = 31.3
 
 [sub_resource type="NoiseTexture" id=6]
-width = 256
-height = 256
 seamless = true
 noise = SubResource( 5 )
 
@@ -23,9 +21,9 @@ shader_param/rim_color = Color( 0.760784, 0.32549, 0.32549, 1 )
 shader_param/overlay_color = Color( 0, 0.0627451, 1, 1 )
 shader_param/surface_color = Color( 0.631373, 0, 0.211765, 1 )
 shader_param/fade_color = Color( 0.996078, 0.254902, 0.254902, 1 )
-shader_param/major_phase = 1.853
-shader_param/major_detail_intensity = -2.034
-shader_param/major_detail_level = 0.601
+shader_param/major_phase = 1.573
+shader_param/major_detail_intensity = -1.561
+shader_param/major_detail_level = -1.967
 shader_param/detail_decay_distance = 50000.0
 shader_param/detail_decay_power = 2.0
 shader_param/major_detail_scale = 1.0
@@ -74,11 +72,11 @@ shader_param/rim_floor = 0.1
 shader_param/rim_outer_strength = 3.0
 shader_param/rim_outer_exponent = 3.0
 shader_param/alpha_clip = 1.0
-shader_param/scale = 0.5
+shader_param/scale = 0.299
 shader_param/scale_max = 3.0
 shader_param/beam_width_power = 1.0
 shader_param/beam_width_focus = 0.8
-shader_param/beam_dist_power = 0.4
+shader_param/beam_dist_power = 0.5955
 shader_param/fade = 1.0
 shader_param/fade_power = 1.0
 
@@ -105,3 +103,9 @@ material/0 = SubResource( 8 )
 [node name="Halo" type="MeshInstance" parent="Star_1e3"]
 mesh = SubResource( 4 )
 material/0 = SubResource( 11 )
+
+[node name="OmniLight" type="OmniLight" parent="Star_1e3"]
+light_color = Color( 0.886275, 0.168627, 0.588235, 1 )
+light_specular = 1.0
+omni_range = 1e+07
+omni_attenuation = 1.03527
