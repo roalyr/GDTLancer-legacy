@@ -2,9 +2,10 @@
 
 [resource]
 background_mode = 1
-background_color = Color( 0.0666667, 0.0862745, 0.0980392, 1 )
-background_energy = 0.0
-ambient_light_color = Color( 0.25098, 0.25098, 0.25098, 1 )
-ambient_light_sky_contribution = 0.0
+fog_color = Color( 0.105882, 0.00784314, 0.172549, 1 )
+fog_depth_end = 1e+06
+fog_depth_curve = 0.217638
 tonemap_mode = 4
-adjustment_enabled = true
+dof_blur_far_distance = 8192.0
+dof_blur_far_transition = 8192.0
+dof_blur_far_quality = 0

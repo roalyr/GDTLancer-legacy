@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Shaders/Solid/Solid_material.gdshader" type="Shader" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Shaders/Star/Star_halo.gdshader" type="Shader" id=4]
+[ext_resource path="res://Assets/Shaders/Star/Star_corona.gdshader" type="Shader" id=4]
 [ext_resource path="res://Assets/Shaders/Lights/Light_distant_sprite.gdshader" type="Shader" id=5]
 [ext_resource path="res://Assets/Models/Shapes/UV_sphere/UV_sphere_LOD0.tres" type="SphereMesh" id=6]
 [ext_resource path="res://Assets/Shaders/Star/Star_surface.gdshader" type="Shader" id=9]

@@ -38,3 +38,4 @@ DO NOT TRANSLATE AND DO NOT REMOVE
 visible = false
 
 [node name="Phoenix_heavy" parent="_EDITOR_OBJECTS_" instance=ExtResource( 4 )]
+visible = false

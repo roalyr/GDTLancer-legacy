@@ -51,6 +51,7 @@ shader_param/ice_detail_intensity = 2.245
 shader_param/ice_noise_blend = 0.199
 shader_param/uv_shift_x = 0.15
 shader_param/uv_shift_y = 0.63
+shader_param/Fcoef = 0.001
 shader_param/major_detail_noise = SubResource( 78 )
 shader_param/small_detail_noise = SubResource( 80 )
 
@@ -61,6 +62,7 @@ shader_param/emission = Color( 0, 0.305882, 0.247059, 1 )
 shader_param/alpha_clip = 0.05
 shader_param/rim_strength = 25.0
 shader_param/rim_exponent = 4.0
+shader_param/Fcoef = 0.001
 
 [node name="Planet Icy Zone" type="Area"]
 input_ray_pickable = false

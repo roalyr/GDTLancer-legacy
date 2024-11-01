@@ -1,18 +1,16 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Ship/Ship_package.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Shaders/Solid/Solid_material.gdshader" type="Shader" id=2]
 [ext_resource path="res://Scenes/Editor_scenes/_EDITOR_OBJECTS_.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Models/Ships/Phoenix_heavy.glb" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/FX/Engine_exhaust_blue.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/Textures/metallic_blue_hull2.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Textures/metallic_blue_hull2_spec.png" type="Texture" id=7]
 
 [sub_resource type="GDScript" id=90]
 resource_name = "Ship_data"
 script/source = "extends Node
 
-const ship_mass = 1e6
+const ship_mass = 1e5
 const idle_engine_ticks = 50
 
 # Turning sensitivity LEFT-RIGHT | UP-DOWN | ROLL
@@ -46,6 +44,7 @@ shader_param/roughness_sharpness = 100.0
 shader_param/scale = 1.0
 shader_param/details_power = 1.0
 shader_param/specular_power = 1.0
+shader_param/Fcoef = 0.001
 
 [sub_resource type="ShaderMaterial" id=81]
 shader = ExtResource( 2 )
@@ -63,6 +62,7 @@ shader_param/roughness_sharpness = 100.0
 shader_param/scale = 1.0
 shader_param/details_power = 1.0
 shader_param/specular_power = 1.0
+shader_param/Fcoef = 0.001
 
 [sub_resource type="QuadMesh" id=79]
 
@@ -82,6 +82,7 @@ shader_param/roughness_sharpness = 100.0
 shader_param/scale = 1.0
 shader_param/details_power = 1.0
 shader_param/specular_power = 1.0
+shader_param/Fcoef = 0.001
 
 [sub_resource type="QuadMesh" id=78]
 
@@ -101,6 +102,7 @@ shader_param/roughness_sharpness = 100.0
 shader_param/scale = 1.0
 shader_param/details_power = 1.0
 shader_param/specular_power = 1.0
+shader_param/Fcoef = 0.001
 
 [sub_resource type="QuadMesh" id=77]
 
@@ -120,8 +122,7 @@ shader_param/roughness_sharpness = 100.0
 shader_param/scale = 2.033
 shader_param/details_power = 2.0
 shader_param/specular_power = 3.0
-shader_param/detail_map = ExtResource( 6 )
-shader_param/specular_map = ExtResource( 7 )
+shader_param/Fcoef = 0.001
 
 [sub_resource type="CapsuleShape" id=91]
 

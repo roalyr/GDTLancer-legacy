@@ -4,15 +4,16 @@ importer="texture"
 type="StreamTexture"
 path.s3tc="res://.import/Craters_2_smooth.png-3fcc1c25c67275cc492908594dedddf0.s3tc.stex"
 path.etc2="res://.import/Craters_2_smooth.png-3fcc1c25c67275cc492908594dedddf0.etc2.stex"
+path.etc="res://.import/Craters_2_smooth.png-3fcc1c25c67275cc492908594dedddf0.etc.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
+"imported_formats": [ "s3tc", "etc2", "etc" ],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Decals/Craters/Textures_512/smooth/Craters_2_smooth.png"
-dest_files=[ "res://.import/Craters_2_smooth.png-3fcc1c25c67275cc492908594dedddf0.s3tc.stex", "res://.import/Craters_2_smooth.png-3fcc1c25c67275cc492908594dedddf0.etc2.stex" ]
+dest_files=[ "res://.import/Craters_2_smooth.png-3fcc1c25c67275cc492908594dedddf0.s3tc.stex", "res://.import/Craters_2_smooth.png-3fcc1c25c67275cc492908594dedddf0.etc2.stex", "res://.import/Craters_2_smooth.png-3fcc1c25c67275cc492908594dedddf0.etc.stex" ]
 
 [params]
 

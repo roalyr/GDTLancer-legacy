@@ -18,12 +18,14 @@
 shader = ExtResource( 4 )
 shader_param/albedo = Color( 0.752941, 0.615686, 0.34902, 1 )
 shader_param/distance_fade_max = 1e+17
+shader_param/Fcoef = 0.001
 
 [sub_resource type="ShaderMaterial" id=137]
 next_pass = SubResource( 124 )
 shader = ExtResource( 5 )
 shader_param/albedo = Color( 0.337255, 0.203922, 0.168627, 1 )
 shader_param/distance_fade_max = 6e+15
+shader_param/Fcoef = 0.001
 
 [sub_resource type="OpenSimplexNoise" id=125]
 octaves = 1
@@ -54,18 +56,21 @@ shader_param/color_power_b = 1.084
 shader_param/color_multiplier_r = 2.158
 shader_param/color_multiplier_g = 2.329
 shader_param/color_multiplier_b = 4.085
+shader_param/Fcoef = 0.001
 shader_param/major_detail_noise = SubResource( 138 )
 
 [sub_resource type="ShaderMaterial" id=134]
 shader = ExtResource( 4 )
 shader_param/albedo = Color( 0.337255, 0.203922, 0.168627, 1 )
 shader_param/distance_fade_max = 3e+16
+shader_param/Fcoef = 0.001
 
 [sub_resource type="ShaderMaterial" id=136]
 next_pass = SubResource( 134 )
 shader = ExtResource( 5 )
 shader_param/albedo = Color( 0.0666667, 0.0862745, 0.0980392, 1 )
 shader_param/distance_fade_max = 1e+16
+shader_param/Fcoef = 0.001
 
 [sub_resource type="ShaderMaterial" id=128]
 next_pass = SubResource( 136 )
@@ -86,6 +91,7 @@ shader_param/color_power_b = 1.0
 shader_param/color_multiplier_r = 1.0
 shader_param/color_multiplier_g = 1.0
 shader_param/color_multiplier_b = 1.0
+shader_param/Fcoef = 0.001
 
 [sub_resource type="SphereShape" id=79]
 margin = 0.001

@@ -12,7 +12,7 @@
 [ext_resource path="res://Assets/Models/Shapes/Icosphere/Icosphere_LOD1.tres" type="ArrayMesh" id=10]
 [ext_resource path="res://Assets/Models/Shapes/Icosphere/Icosphere_LOD2.tres" type="ArrayMesh" id=11]
 [ext_resource path="res://Assets/Models/Shapes/UV_sphere/UV_sphere_LOD2.tres" type="SphereMesh" id=12]
-[ext_resource path="res://Assets/Shaders/Star/Star_halo.gdshader" type="Shader" id=13]
+[ext_resource path="res://Assets/Shaders/Star/Star_corona.gdshader" type="Shader" id=13]
 [ext_resource path="res://Assets/Shaders/Lights/Light_distant_sprite.gdshader" type="Shader" id=14]
 [ext_resource path="res://Scripts/Markers/Marker_star.gd" type="Script" id=15]
 [ext_resource path="res://Assets/Shaders/Star/Star_surface.gdshader" type="Shader" id=16]
@@ -49,6 +49,7 @@ shader_param/rim_exponent = 6.0
 shader_param/alpha_clip = 1.0
 shader_param/displacement_scale = 0.02
 shader_param/displacement_velocity = 0.05
+shader_param/Fcoef = 0.001
 shader_param/displacement_texture = SubResource( 96 )
 
 [sub_resource type="OpenSimplexNoise" id=91]
@@ -73,6 +74,7 @@ shader_param/major_detail_flow = 0.022
 shader_param/rim_strength = 1.251
 shader_param/rim_exponent = 0.5
 shader_param/rim_intensity = 0.214
+shader_param/Fcoef = 0.001
 shader_param/major_detail_noise = SubResource( 92 )
 
 [sub_resource type="ShaderMaterial" id=109]
@@ -87,6 +89,7 @@ shader_param/exponent = 5.0
 shader_param/pulse_factor = 1.0
 shader_param/pulse_rate = 10.0
 shader_param/phase = 0.0
+shader_param/Fcoef = 0.001
 
 [sub_resource type="OpenSimplexNoise" id=106]
 octaves = 1
@@ -113,6 +116,7 @@ shader_param/rim_exponent = 6.0
 shader_param/alpha_clip = 1.0
 shader_param/displacement_scale = 0.029
 shader_param/displacement_velocity = 0.048
+shader_param/Fcoef = 0.001
 shader_param/displacement_texture = SubResource( 107 )
 
 [sub_resource type="OpenSimplexNoise" id=101]
@@ -139,6 +143,7 @@ shader_param/major_detail_flow = 0.01
 shader_param/rim_strength = 1.191
 shader_param/rim_exponent = 0.5
 shader_param/rim_intensity = 0.91
+shader_param/Fcoef = 0.001
 shader_param/major_detail_noise = SubResource( 102 )
 
 [sub_resource type="ShaderMaterial" id=110]
@@ -153,6 +158,7 @@ shader_param/exponent = 5.0
 shader_param/pulse_factor = 1.0
 shader_param/pulse_rate = 10.0
 shader_param/phase = 0.0
+shader_param/Fcoef = 0.001
 
 [node name="_STAR_A9_3_SYSTEM_ZONE" type="Area"]
 input_ray_pickable = false

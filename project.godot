@@ -221,8 +221,10 @@ common/physics_fps=120
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation.mobile=2
 threads/thread_model=2
+vram_compression/import_etc=true
 misc/lossless_compression/force_png=true
 quality/directional_shadow/size=256
 quality/directional_shadow/size.mobile=256
@@ -245,7 +247,8 @@ quality/filters/anisotropic_filter_level=1
 gles3/shaders/max_simultaneous_compiles=1
 gles3/shaders/shader_cache_size_mb=128
 quality/lightmapping/use_bicubic_sampling=false
-quality/subsurface_scattering/quality=0
 quality/reflections/atlas_size=8
+quality/filters/use_fxaa=true
 quality/depth/hdr.mobile=true
 environment/default_environment="res://Assets/Environment/Environment.tres"
+quality/subsurface_scattering/quality=0

@@ -4,15 +4,16 @@ importer="texture"
 type="StreamTexture"
 path.s3tc="res://.import/Mask_large.png-93b52d74c74dfede44b056b8ea0804ac.s3tc.stex"
 path.etc2="res://.import/Mask_large.png-93b52d74c74dfede44b056b8ea0804ac.etc2.stex"
+path.etc="res://.import/Mask_large.png-93b52d74c74dfede44b056b8ea0804ac.etc.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
+"imported_formats": [ "s3tc", "etc2", "etc" ],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Decals/Craters/Masks/Mask_large.png"
-dest_files=[ "res://.import/Mask_large.png-93b52d74c74dfede44b056b8ea0804ac.s3tc.stex", "res://.import/Mask_large.png-93b52d74c74dfede44b056b8ea0804ac.etc2.stex" ]
+dest_files=[ "res://.import/Mask_large.png-93b52d74c74dfede44b056b8ea0804ac.s3tc.stex", "res://.import/Mask_large.png-93b52d74c74dfede44b056b8ea0804ac.etc2.stex", "res://.import/Mask_large.png-93b52d74c74dfede44b056b8ea0804ac.etc.stex" ]
 
 [params]
 

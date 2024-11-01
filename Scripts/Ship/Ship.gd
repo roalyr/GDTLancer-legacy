@@ -117,9 +117,6 @@ func _integrate_forces(state):
 	else:
 		engine_delay_time = engine_delay_time_base
 	
-	# Modify origin rebase limit.
-	if vel > Constants.rebase_limit_margin*Constants.rebase_lag:
-		Paths.global_space.rebase_limit = round(vel*Constants.rebase_lag)
 	
 	state.add_central_force(-global_transform.basis.z * PlayerState.acceleration)
 	

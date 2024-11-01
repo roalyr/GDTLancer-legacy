@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/Models/Shapes/Triangle/Triangle_z_up.tres" type="ArrayMesh" id=4]
 [ext_resource path="res://Scripts/Zones/Zone_death.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Zones/LODs_zones/LODs_trigger.gd" type="Script" id=6]
-[ext_resource path="res://Assets/Shaders/Star/Star_halo.gdshader" type="Shader" id=7]
+[ext_resource path="res://Assets/Shaders/Star/Star_corona.gdshader" type="Shader" id=7]
 [ext_resource path="res://Assets/Shaders/Lights/Light_distant_sprite.gdshader" type="Shader" id=8]
 [ext_resource path="res://Scripts/Markers/Marker_star.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Shaders/Star/Star_surface.gdshader" type="Shader" id=10]
@@ -48,6 +48,7 @@ shader_param/rim_exponent = 1.3
 shader_param/alpha_clip = 1.0
 shader_param/displacement_scale = 0.034
 shader_param/displacement_velocity = 0.14
+shader_param/Fcoef = 0.001
 shader_param/displacement_texture = SubResource( 120 )
 
 [sub_resource type="CubeMesh" id=118]
@@ -76,6 +77,7 @@ shader_param/major_detail_flow = 0.01
 shader_param/rim_strength = 1.0
 shader_param/rim_exponent = 0.4
 shader_param/rim_intensity = 0.497
+shader_param/Fcoef = 0.001
 shader_param/major_detail_noise = SubResource( 121 )
 
 [sub_resource type="ShaderMaterial" id=93]
@@ -90,6 +92,7 @@ shader_param/exponent = 5.0
 shader_param/pulse_factor = 0.935
 shader_param/pulse_rate = 3.038
 shader_param/phase = 0.0
+shader_param/Fcoef = 0.001
 
 [sub_resource type="ShaderMaterial" id=123]
 shader = ExtResource( 11 )
@@ -101,6 +104,7 @@ shader_param/absolute_scale = 0.2
 shader_param/directional_scale = 0.1
 shader_param/scale_power = 1.0
 shader_param/threshold = 1.0
+shader_param/Fcoef = 0.001
 
 [sub_resource type="CubeMesh" id=125]
 
@@ -114,6 +118,7 @@ shader_param/absolute_scale = 1.0
 shader_param/directional_scale = 0.62
 shader_param/scale_power = 50.0
 shader_param/threshold = 1.0
+shader_param/Fcoef = 0.001
 
 [sub_resource type="SphereShape" id=92]
 

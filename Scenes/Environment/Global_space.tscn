@@ -1,23 +1,86 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Clusters/Moirai_Cluster_Zone/Systems/_STAR_A9_3_SYSTEM_ZONE.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Clusters/Moirai_Cluster_Zone/Systems/STAR_B7_0_SYSTEM_ZONE/STAR_B7_0_SYSTEM_ZONE.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Shaders/Star/Star_surface.gdshader" type="Shader" id=1]
+[ext_resource path="res://Assets/Shaders/Star/Star_corona.gdshader" type="Shader" id=2]
 [ext_resource path="res://Scripts/Origin_rebase/Rebase_global.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Clusters/Nebula_global/STAR_4_SYSTEM_ZONE/STAR_4_SYSTEM_ZONE.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Shaders/Lights/Light_halo_directional.gdshader" type="Shader" id=4]
 [ext_resource path="res://Scenes/Editor_scenes/_EDITOR_OBJECTS_.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Cloud_global.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Nebula_green_red.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Clusters/Moirai_Cluster_Zone/Systems/STAR_A7_1_SYSTEM_ZONE/STAR_A7_1_SYSTEM_ZONE.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Environment/Star_placeholders_M.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Environment/Star_placeholders_G.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Environment/Star_placeholders_B.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Clusters/Moirai_Cluster_Zone/Systems/_STAR_G9_5_SYSTEM_ZONE.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Clusters/Moirai_Cluster_Zone/Systems/_STAR_M9_2_SYSTEM_ZONE.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Clusters/Moirai_Cluster_Zone/Systems/_STAR_F7_6_SYSTEM_ZONE.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Nebula_blue.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Scripts/Viewport/Object_visible_after_load.gd" type="Script" id=16]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Nebula_orange.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Nebula_sky.tscn" type="PackedScene" id=18]
+
+[sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=5]
+period = 58.0
+
+[sub_resource type="NoiseTexture" id=6]
+width = 256
+height = 256
+seamless = true
+noise = SubResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/rim_color = Color( 0.760784, 0.32549, 0.32549, 1 )
+shader_param/overlay_color = Color( 0, 0.0627451, 1, 1 )
+shader_param/surface_color = Color( 0.631373, 0, 0.211765, 1 )
+shader_param/fade_color = Color( 0.996078, 0.254902, 0.254902, 1 )
+shader_param/major_phase = 1.853
+shader_param/major_detail_intensity = -2.034
+shader_param/major_detail_level = 0.601
+shader_param/detail_decay_distance = 50000.0
+shader_param/detail_decay_power = 2.0
+shader_param/major_detail_scale = 1.0
+shader_param/major_detail_flow = 0.01
+shader_param/rim_strength = 1.0
+shader_param/rim_exponent = 0.195
+shader_param/rim_intensity = 8.012
+shader_param/major_detail_noise = SubResource( 6 )
+
+[sub_resource type="SphereMesh" id=3]
+rings = 64
+
+[sub_resource type="OpenSimplexNoise" id=9]
+period = 42.4
+lacunarity = 2.95
+
+[sub_resource type="NoiseTexture" id=10]
+width = 128
+height = 128
+noise = SubResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 2 )
+shader_param/corona_color = Color( 1, 0.505882, 0.505882, 1 )
+shader_param/strength_corona = 11.075
+shader_param/exponent_corona = 2.245
+shader_param/exponent_corona_rim = 4.401
+shader_param/corona_floor_power = 7.832
+shader_param/corona_floor = 2.467
+shader_param/displacement_power = -0.0425
+shader_param/displacement_scale_xz = 1.628
+shader_param/displacement_scale_y = 1.6145
+shader_param/displacement_velocity = 0.5
+shader_param/displacement_texture = SubResource( 10 )
+
+[sub_resource type="SphereMesh" id=4]
+radial_segments = 32
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 4 )
+shader_param/albedo = Color( 1, 0.196078, 0.462745, 1 )
+shader_param/rim_strength = 1.031
+shader_param/rim_exponent = 30.0
+shader_param/rim_power = 1.0
+shader_param/rim_floor = 0.1
+shader_param/rim_outer_strength = 3.0
+shader_param/rim_outer_exponent = 3.0
+shader_param/alpha_clip = 1.0
+shader_param/scale = 0.5
+shader_param/scale_max = 3.0
+shader_param/beam_width_power = 1.0
+shader_param/beam_width_focus = 0.8
+shader_param/beam_dist_power = 0.4
+shader_param/fade = 1.0
+shader_param/fade_power = 1.0
 
 [node name="Global_space" type="Position3D"]
 script = ExtResource( 3 )
@@ -28,170 +91,17 @@ __meta__ = {
 
 [node name="_EDITOR OBJECTS_" parent="." instance=ExtResource( 5 )]
 
-[node name="Nebula_global" parent="." instance=ExtResource( 6 )]
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Star_1e3" type="Spatial" parent="."]
+transform = Transform( 1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0 )
 
-[node name="Fake_stars" type="Position3D" parent="Nebula_global"]
-transform = Transform( 0.113417, 0.0465323, -0.0731705, -0.0318948, 0.134411, 0.0360399, 0.0806343, -0.0122842, 0.117174, 1.87264e+17, 6.72165e+16, -3.53759e+16 )
-script = ExtResource( 16 )
+[node name="Surface" type="MeshInstance" parent="Star_1e3"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
 
-[node name="Star_placeholders_B" parent="Nebula_global/Fake_stars" instance=ExtResource( 11 )]
-transform = Transform( -2.43107, 2.36911, 2.25395, 3.07153, 2.61798, 0.561176, -1.12188, 2.03386, -3.34781, -2.37796e+17, -4.6393e+17, -1.77499e+17 )
+[node name="Corona" type="MeshInstance" parent="Star_1e3"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 8 )
 
-[node name="Star_placeholders_B2" parent="Nebula_global/Fake_stars" instance=ExtResource( 11 )]
-transform = Transform( -9.84437, 2.5112, -0.452161, 1.42579, 6.90842, 7.32548, 2.11604, 7.02777, -7.03949, -2.37796e+17, -4.6393e+17, -1.77499e+17 )
-
-[node name="Star_placeholders_G" parent="Nebula_global/Fake_stars" instance=ExtResource( 10 )]
-transform = Transform( 0.568859, -2.97672, -0.573296, 2.29091, 0.0401406, 2.06476, -1.98526, -0.806634, 2.21839, -6.75589e+17, -4.57595e+17, -1.35122e+16 )
-
-[node name="Star_placeholders_G3" parent="Nebula_global/Fake_stars" instance=ExtResource( 10 )]
-transform = Transform( -5.28549, -3.30631, -1.34858, 3.17846, -3.25855, -4.46831, 1.62717, -4.37454, 4.34766, -6.75589e+17, -4.57595e+17, -1.35118e+16 )
-
-[node name="Star_placeholders_G2" parent="Nebula_global/Fake_stars" instance=ExtResource( 10 )]
-transform = Transform( -1.31269, 1.25744, 1.79343, 0.262193, -1.9856, 1.58408, 2.17458, 0.998464, 0.891612, 8.1026e+17, -4.90513e+16, -1.13861e+18 )
-
-[node name="Star_placeholders_G4" parent="Nebula_global/Fake_stars" instance=ExtResource( 10 )]
-transform = Transform( -0.347024, 7.78716, -0.0228462, 5.15002, 0.246697, 5.84611, 5.84101, 0.24514, -5.15584, 8.1026e+17, -4.90511e+16, -1.13861e+18 )
-
-[node name="Star_placeholders_M" parent="Nebula_global/Fake_stars" instance=ExtResource( 9 )]
-transform = Transform( 2.2329, -1.10983, -0.0815095, 0.964617, 2.02144, -1.09884, 0.554864, 0.951958, 2.23832, 1.05532e+18, -1.73938e+17, -4.23937e+17 )
-
-[node name="Star_placeholders_M3" parent="Nebula_global/Fake_stars" instance=ExtResource( 9 )]
-transform = Transform( 2.51382, -2.86626, -0.0169531, 1.57468, 1.36215, 3.19374, -2.39502, -2.11282, 2.082, 1.05532e+18, -1.73938e+17, -4.23937e+17 )
-
-[node name="Star_placeholders_M2" parent="Nebula_global/Fake_stars" instance=ExtResource( 9 )]
-transform = Transform( -1.56652, -0.02368, 1.92602, 0.131072, -2.47812, 0.0761394, 1.9217, 0.149722, 1.56485, -7.51411e+17, -5.80986e+17, 3.90544e+17 )
-
-[node name="Star_placeholders_M4" parent="Nebula_global/Fake_stars" instance=ExtResource( 9 )]
-transform = Transform( 6.7812, -2.86268, -1.91984, -0.778839, 2.85477, -7.00779, 3.35769, 6.44362, 2.25182, -7.51411e+17, -5.80986e+17, 3.90544e+17 )
-
-[node name="Fake_stars2" type="Position3D" parent="Nebula_global"]
-transform = Transform( -0.00472497, 0.143778, -0.00291353, -0.142416, -0.00508264, -0.019866, -0.0199539, 0.00223139, 0.142477, -5.97139e+17, -2.87685e+17, -7.71908e+17 )
-script = ExtResource( 16 )
-
-[node name="Star_placeholders_B" parent="Nebula_global/Fake_stars2" instance=ExtResource( 11 )]
-transform = Transform( -2.43107, 2.36911, 2.25395, 3.07153, 2.61798, 0.561176, -1.12188, 2.03386, -3.34781, -2.37796e+17, -4.6393e+17, -1.77499e+17 )
-
-[node name="Star_placeholders_B2" parent="Nebula_global/Fake_stars2" instance=ExtResource( 11 )]
-transform = Transform( -9.84437, 2.5112, -0.452161, 1.42579, 6.90842, 7.32548, 2.11604, 7.02777, -7.03949, -2.37796e+17, -4.6393e+17, -1.77499e+17 )
-
-[node name="Star_placeholders_G" parent="Nebula_global/Fake_stars2" instance=ExtResource( 10 )]
-transform = Transform( 0.568859, -2.97672, -0.573296, 2.29091, 0.0401406, 2.06476, -1.98526, -0.806634, 2.21839, -6.75589e+17, -4.57595e+17, -1.35122e+16 )
-
-[node name="Star_placeholders_G3" parent="Nebula_global/Fake_stars2" instance=ExtResource( 10 )]
-transform = Transform( -5.28549, -3.30631, -1.34858, 3.17846, -3.25855, -4.46831, 1.62717, -4.37454, 4.34766, -6.75589e+17, -4.57595e+17, -1.35118e+16 )
-
-[node name="Star_placeholders_G2" parent="Nebula_global/Fake_stars2" instance=ExtResource( 10 )]
-transform = Transform( -1.31269, 1.25744, 1.79343, 0.262193, -1.9856, 1.58408, 2.17458, 0.998464, 0.891612, 8.1026e+17, -4.90513e+16, -1.13861e+18 )
-
-[node name="Star_placeholders_G4" parent="Nebula_global/Fake_stars2" instance=ExtResource( 10 )]
-transform = Transform( -0.347024, 7.78716, -0.0228462, 5.15002, 0.246697, 5.84611, 5.84101, 0.24514, -5.15584, 8.1026e+17, -4.90511e+16, -1.13861e+18 )
-
-[node name="Star_placeholders_M" parent="Nebula_global/Fake_stars2" instance=ExtResource( 9 )]
-transform = Transform( 2.2329, -1.10983, -0.0815095, 0.964617, 2.02144, -1.09884, 0.554864, 0.951958, 2.23832, 1.05532e+18, -1.73938e+17, -4.23937e+17 )
-
-[node name="Star_placeholders_M3" parent="Nebula_global/Fake_stars2" instance=ExtResource( 9 )]
-transform = Transform( 2.51382, -2.86626, -0.0169531, 1.57468, 1.36215, 3.19374, -2.39502, -2.11282, 2.082, 1.05532e+18, -1.73938e+17, -4.23937e+17 )
-
-[node name="Star_placeholders_M2" parent="Nebula_global/Fake_stars2" instance=ExtResource( 9 )]
-transform = Transform( -1.56652, -0.02368, 1.92602, 0.131072, -2.47812, 0.0761394, 1.9217, 0.149722, 1.56485, -7.51411e+17, -5.80986e+17, 3.90544e+17 )
-
-[node name="Star_placeholders_M4" parent="Nebula_global/Fake_stars2" instance=ExtResource( 9 )]
-transform = Transform( 6.7812, -2.86268, -1.91984, -0.778839, 2.85477, -7.00779, 3.35769, 6.44362, 2.25182, -7.51411e+17, -5.80986e+17, 3.90544e+17 )
-
-[node name="Fake_stars3" type="Position3D" parent="Nebula_global"]
-transform = Transform( -0.0718663, -0.0356266, -0.0744869, 0.0784716, -0.0601892, -0.0469229, -0.025685, -0.084204, 0.065056, -6.88811e+17, 2.86599e+17, 8.29655e+17 )
-script = ExtResource( 16 )
-
-[node name="Star_placeholders_B" parent="Nebula_global/Fake_stars3" instance=ExtResource( 11 )]
-transform = Transform( -2.43107, 2.36911, 2.25395, 3.07153, 2.61798, 0.561176, -1.12188, 2.03386, -3.34781, -2.37796e+17, -4.6393e+17, -1.77499e+17 )
-
-[node name="Star_placeholders_B2" parent="Nebula_global/Fake_stars3" instance=ExtResource( 11 )]
-transform = Transform( -9.84437, 2.5112, -0.452161, 1.42579, 6.90842, 7.32548, 2.11604, 7.02777, -7.03949, -2.37796e+17, -4.6393e+17, -1.77499e+17 )
-
-[node name="Star_placeholders_G" parent="Nebula_global/Fake_stars3" instance=ExtResource( 10 )]
-transform = Transform( 0.568859, -2.97672, -0.573296, 2.29091, 0.0401406, 2.06476, -1.98526, -0.806634, 2.21839, -6.75589e+17, -4.57595e+17, -1.35122e+16 )
-
-[node name="Star_placeholders_G3" parent="Nebula_global/Fake_stars3" instance=ExtResource( 10 )]
-transform = Transform( -5.28549, -3.30631, -1.34858, 3.17846, -3.25855, -4.46831, 1.62717, -4.37454, 4.34766, -6.75589e+17, -4.57595e+17, -1.35118e+16 )
-
-[node name="Star_placeholders_G2" parent="Nebula_global/Fake_stars3" instance=ExtResource( 10 )]
-transform = Transform( -1.31269, 1.25744, 1.79343, 0.262193, -1.9856, 1.58408, 2.17458, 0.998464, 0.891612, 8.1026e+17, -4.90513e+16, -1.13861e+18 )
-
-[node name="Star_placeholders_G4" parent="Nebula_global/Fake_stars3" instance=ExtResource( 10 )]
-transform = Transform( -0.347024, 7.78716, -0.0228462, 5.15002, 0.246697, 5.84611, 5.84101, 0.24514, -5.15584, 8.1026e+17, -4.90511e+16, -1.13861e+18 )
-
-[node name="Star_placeholders_M" parent="Nebula_global/Fake_stars3" instance=ExtResource( 9 )]
-transform = Transform( 2.2329, -1.10983, -0.0815095, 0.964617, 2.02144, -1.09884, 0.554864, 0.951958, 2.23832, 1.05532e+18, -1.73938e+17, -4.23937e+17 )
-
-[node name="Star_placeholders_M3" parent="Nebula_global/Fake_stars3" instance=ExtResource( 9 )]
-transform = Transform( 2.51382, -2.86626, -0.0169531, 1.57468, 1.36215, 3.19374, -2.39502, -2.11282, 2.082, 1.05532e+18, -1.73938e+17, -4.23937e+17 )
-
-[node name="Star_placeholders_M2" parent="Nebula_global/Fake_stars3" instance=ExtResource( 9 )]
-transform = Transform( -1.56652, -0.02368, 1.92602, 0.131072, -2.47812, 0.0761394, 1.9217, 0.149722, 1.56485, -7.51411e+17, -5.80986e+17, 3.90544e+17 )
-
-[node name="Star_placeholders_M4" parent="Nebula_global/Fake_stars3" instance=ExtResource( 9 )]
-transform = Transform( 6.7812, -2.86268, -1.91984, -0.778839, 2.85477, -7.00779, 3.35769, 6.44362, 2.25182, -7.51411e+17, -5.80986e+17, 3.90544e+17 )
-
-[node name="_STAR_A9_3_SYSTEM_ZONE" parent="Nebula_global" instance=ExtResource( 1 )]
-transform = Transform( 0.992175, 0.0942712, 0.081859, -0.0881187, 0.993223, -0.0757793, -0.0884481, 0.067973, 0.993759, 6.98896e+17, 1.29535e+17, -1.74346e+17 )
-__meta__ = {
-"_editor_description_": "System: Valeri
-"
-}
-
-[node name="_STAR_G9_5_SYSTEM_ZONE" parent="Nebula_global" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03615e+17, -2.71994e+17, 5.00278e+17 )
-
-[node name="STAR_4_SYSTEM_ZONE" parent="Nebula_global" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9116e+10, -2.33676e+08, -3.47641e+10 )
-__meta__ = {
-"_editor_description_": "System: Viakata
-"
-}
-
-[node name="Zone_nebula_orange" parent="." instance=ExtResource( 17 )]
-transform = Transform( 0.0893932, 0.99594, 0.0106466, -0.297457, 0.0368978, -0.954022, -0.950541, 0.082116, 0.299548, -7.99526e+17, 2.37025e+17, -1.99909e+17 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="_STAR_M9_2_SYSTEM_ZONE" parent="Zone_nebula_orange" instance=ExtResource( 13 )]
-transform = Transform( 0.0893931, -0.297457, -0.950541, 0.995939, 0.0368976, 0.0821158, 0.0106469, -0.954022, 0.299547, 5.99441e+15, -2.53541e+15, 1.49239e+16 )
-
-[node name="Zone_nebula_blue" parent="." instance=ExtResource( 15 )]
-transform = Transform( 0.729017, -0.221007, 0.647835, -0.412554, -0.897088, 0.158214, 0.546199, -0.382608, -0.74517, 3.73047e+17, -9.23179e+17, -1.19595e+17 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="_STAR_F7_6_SYSTEM_ZONE" parent="Zone_nebula_blue" instance=ExtResource( 14 )]
-transform = Transform( 0.729017, -0.412555, 0.546199, -0.221007, -0.897088, -0.382608, 0.647835, 0.158214, -0.74517, 0, 0, 0 )
-
-[node name="Zone_nebula_green_red" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3983e+16, -7.94959e+17, -9.16667e+17 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="_STAR_A7_1_SYSTEM_ZONE" parent="Zone_nebula_green_red" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.43809e+16, 1.39491e+17, 1.34797e+17 )
-__meta__ = {
-"_editor_description_": "System: Equberan
-"
-}
-
-[node name="Zone_nebula_sky" parent="." instance=ExtResource( 18 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02324e+17, 2.04906e+18, -1.19853e+17 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="_STAR_B7_0_SYSTEM_ZONE" parent="Zone_nebula_sky" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1138e+16, 1.82969e+16, -2.66981e+16 )
-__meta__ = {
-"_editor_description_": "System: Victory
-"
-}
+[node name="Halo" type="MeshInstance" parent="Star_1e3"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 11 )

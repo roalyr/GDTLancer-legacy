@@ -1,14 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Coordinate_systems/Local_space_star.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Coordinate_systems/Local_space_planet.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Coordinate_systems/Local_space_structure.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Coordinate_systems/Local_space_system.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Environment/Global_space.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Environment/Environment.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Viewport/Viewport3D.gd" type="Script" id=8]
-[ext_resource path="res://Scenes/Environment/Camera_decorations.tscn" type="PackedScene" id=9]
 
 [node name="ViewportContainer3D" type="ViewportContainer"]
 anchor_right = 1.0
@@ -27,17 +22,7 @@ script = ExtResource( 8 )
 
 [node name="Environment" parent="Viewport3D" instance=ExtResource( 7 )]
 
-[node name="Camera_decorations" parent="Viewport3D" instance=ExtResource( 9 )]
-
 [node name="Global_space" parent="Viewport3D" instance=ExtResource( 6 )]
-
-[node name="Local_space_system" parent="Viewport3D" instance=ExtResource( 5 )]
-
-[node name="Local_space_star" parent="Viewport3D" instance=ExtResource( 2 )]
-
-[node name="Local_space_planet" parent="Viewport3D" instance=ExtResource( 3 )]
-
-[node name="Local_space_structure" parent="Viewport3D" instance=ExtResource( 4 )]
 
 [node name="Player" parent="Viewport3D" instance=ExtResource( 1 )]
 
