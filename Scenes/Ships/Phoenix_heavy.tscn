@@ -11,6 +11,7 @@ script/source = "extends Node
 
 const ship_mass = 5e5
 const idle_engine_ticks = 50
+const engine_thrust = 5e8
 
 # Turning sensitivity LEFT-RIGHT | UP-DOWN | ROLL
 const torque_factor = Vector3(5e8,5e8,5e8)
@@ -76,6 +77,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.741, 0, 32.609 )
 [node name="Models" type="Spatial" parent="."]
 
 [node name="_EDITOR OBJECTS_" parent="Models" instance=ExtResource( 3 )]
+visible = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Models/_EDITOR OBJECTS_"]
 transform = Transform( 0.558436, -0.262488, -0.786924, -0.446103, 0.70475, -0.551652, 0.699387, 0.659111, 0.276461, -40.7812, -21.3619, 15.2559 )

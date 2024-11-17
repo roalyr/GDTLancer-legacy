@@ -43,7 +43,7 @@ script/source = "extends HSlider
 # TODO: adjust this from options?
 # TODO: Or use centralized default values.
 func _ready():
-	value = 0.8
+	value = 1.0
 "
 
 [sub_resource type="StyleBoxFlat" id=3]

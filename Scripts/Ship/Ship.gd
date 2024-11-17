@@ -40,6 +40,7 @@ var ship_mass = 0
 var idle_engine_ticks = 0
 var torque_factor = Vector3(0,0,0)
 var autopilot_torque_factor = 0
+var engine_thrust = 0
 var camera_vert_offset = 0.0
 var camera_horiz_offset = 0.0
 var exhaust_shape_size_xy_max = 0
@@ -208,6 +209,7 @@ func init_specific_ship(ship_ref):
 	idle_engine_ticks = current_ship.get_node("Ship_data").idle_engine_ticks
 	torque_factor = current_ship.get_node("Ship_data").torque_factor
 	autopilot_torque_factor = current_ship.get_node("Ship_data").autopilot_torque_factor
+	engine_thrust = current_ship.get_node("Ship_data").engine_thrust
 	camera_vert_offset = current_ship.get_node("Ship_data").camera_vert_offset
 	camera_horiz_offset = current_ship.get_node("Ship_data").camera_horiz_offset
 	exhaust_shape_size_xy_max = current_ship.get_node("Ship_data").exhaust_shape_size_xy_max
@@ -291,7 +293,7 @@ func is_accelerating(accelerating):
 
 	if accelerating:
 			
-		PlayerState.acceleration = 9e9
+		PlayerState.acceleration = engine_thrust
 			
 	
 	else:

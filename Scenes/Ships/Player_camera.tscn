@@ -9,6 +9,7 @@ script/source = "extends Node
 
 const ship_mass = 1
 const idle_engine_ticks = 0
+const engine_thrust = 1e3
 
 # Turning sensitivity LEFT-RIGHT | UP-DOWN | ROLL
 const torque_factor = Vector3(5,5,5)
@@ -32,12 +33,16 @@ shader_param/albedo_specular = Color( 0.5, 0.5, 0.5, 1 )
 shader_param/albedo_gloss = Color( 1, 1, 1, 1 )
 shader_param/emission = Color( 1, 0, 0, 1 )
 shader_param/emission_strength = 1.0
+shader_param/roughness = 1.0
 shader_param/albedo_exponent = 1.0
 shader_param/specular_exponent = 5.0
 shader_param/gloss_exponent = 500.0
+shader_param/roughness_exponent = 3.0
+shader_param/roughness_sharpness = 100.0
 shader_param/scale = 1.0
 shader_param/details_power = 1.0
 shader_param/specular_power = 1.0
+shader_param/Fcoef = 0.001
 
 [sub_resource type="SphereShape" id=91]
 
