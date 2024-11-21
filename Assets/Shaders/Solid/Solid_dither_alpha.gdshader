@@ -1,8 +1,29 @@
 shader_type spatial;
 
+render_mode
+	// Vertex or pixel shading (screen-large object can use vertex)
+	//vertex_lighting,
+	
+	// Blending and culling.
+	blend_mix,
+	cull_back,
+	
+	//unshaded,
+	diffuse_lambert, 
+	specular_blinn,
+	
+	// Additional flags just in case.
+	//ambient_light_disabled,
+	depth_draw_opaque;
+
 // Fade start and end distances
+uniform float specular = 0.5;
+uniform float metallic = 0.5;
+uniform float roughness = 0.5;
+
 uniform float fade_start = 0.0;
-uniform float fade_end = 2000.0;
+uniform float fade_end = 5e4;
+uniform float fade_power = 2.0;
 
 // Dither threshold for the dithering effect
 uniform float dither_threshold : hint_range(0.0, 1.0) = 0.5;
@@ -31,7 +52,7 @@ void fragment() {
     float distance = length(VERTEX);
 
     // Calculate fade factor based on distance
-    float fade_factor = clamp((fade_end - distance) / (fade_end - fade_start), 0.0, 1.0);
+    float fade_factor = pow(clamp((fade_end - distance) / (fade_end - fade_start), 0.0, 1.0), fade_power);
 
     // Get screen position in a 4x4 grid and map to the Bayer matrix
     int index = int(mod(FRAGCOORD.x, 4.0)) + int(mod(FRAGCOORD.y, 4.0)) * 4;
@@ -44,5 +65,9 @@ void fragment() {
 
     // Set the color without affecting the alpha channel
     ALBEDO = vec3(1.0); // White color as an example
-	ALPHA = fade_factor;
+	//ALPHA = fade_factor;
+	
+	SPECULAR = specular;
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
 }

@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Ship/Ship_package.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Shaders/Lights/Light_distant_sprite.gdshader" type="Shader" id=2]
 [ext_resource path="res://Scenes/Editor_scenes/_EDITOR_OBJECTS_.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Models/Ships/Phoenix_heavy.glb" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/FX/Engine_exhaust_blue.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Models/Sprites/Star_sprite_square_wide.glb" type="PackedScene" id=6]
 
 [sub_resource type="GDScript" id=90]
 resource_name = "Ship_data"
@@ -11,7 +13,7 @@ script/source = "extends Node
 
 const ship_mass = 5e5
 const idle_engine_ticks = 50
-const engine_thrust = 5e8
+const engine_thrust = 2e8
 
 # Turning sensitivity LEFT-RIGHT | UP-DOWN | ROLL
 const torque_factor = Vector3(5e8,5e8,5e8)
@@ -26,17 +28,21 @@ const exhaust_shape_size_xy_max = 1.3
 var autopilot_orbiting_factor = 0.05
 "
 
+[sub_resource type="SphereMesh" id=97]
+radial_segments = 262
+rings = 300
+
 [sub_resource type="SpatialMaterial" id=92]
 metallic = 0.58
 
 [sub_resource type="SpatialMaterial" id=93]
-albedo_color = Color( 0.772549, 0.235294, 0.235294, 1 )
-metallic = 0.02
-roughness = 0.45
+albedo_color = Color( 0.745098, 0.647059, 0.647059, 1 )
+metallic = 0.26
+roughness = 0.28
 
 [sub_resource type="SpatialMaterial" id=94]
-metallic = 1.0
-roughness = 0.17
+metallic = 0.82
+roughness = 0.41
 
 [sub_resource type="SpatialMaterial" id=95]
 albedo_color = Color( 0.678431, 0.4, 0.12549, 1 )
@@ -45,12 +51,26 @@ roughness = 0.42
 
 [sub_resource type="SpatialMaterial" id=96]
 vertex_color_use_as_albedo = true
-metallic = 1.0
+metallic = 0.55
 emission_enabled = true
 emission = Color( 0.360784, 0, 0, 1 )
 emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
+
+[sub_resource type="ShaderMaterial" id=98]
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 1, 0.894118, 0.533333, 1 )
+shader_param/scale = 0.296
+shader_param/attenuation = 0.2855
+shader_param/flare_distance = 25.0
+shader_param/flare_size = 2.0
+shader_param/intensity = 0.708
+shader_param/exponent = 2.826
+shader_param/pulse_factor = 1.0
+shader_param/pulse_rate = 5.25
+shader_param/phase = 0.0
+shader_param/distance_fade_max = 0.0
 
 [sub_resource type="CapsuleShape" id=91]
 
@@ -77,7 +97,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.741, 0, 32.609 )
 [node name="Models" type="Spatial" parent="."]
 
 [node name="_EDITOR OBJECTS_" parent="Models" instance=ExtResource( 3 )]
-visible = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Models/_EDITOR OBJECTS_"]
 transform = Transform( 0.558436, -0.262488, -0.786924, -0.446103, 0.70475, -0.551652, 0.699387, 0.659111, 0.276461, -40.7812, -21.3619, 15.2559 )
@@ -91,6 +110,11 @@ light_color = Color( 0, 0.764706, 1, 1 )
 
 [node name="DirectionalLight3" type="DirectionalLight" parent="Models/_EDITOR OBJECTS_"]
 transform = Transform( 0.427638, 0.902956, 0.0423857, 0.903942, -0.42697, -0.0241809, -0.00373691, 0.0486549, -0.998809, 2.67834, 17.2388, -24.6057 )
+visible = false
+
+[node name="MeshInstance" type="MeshInstance" parent="Models/_EDITOR OBJECTS_"]
+transform = Transform( 683.1, 0, 0, 0, 683.1, 0, 0, 0, 683.1, 647.563, -79.7938, -5264.72 )
+mesh = SubResource( 97 )
 
 [node name="Phoenix_heavy" parent="Models" instance=ExtResource( 4 )]
 
@@ -103,6 +127,18 @@ material/1 = SubResource( 94 )
 material/2 = SubResource( 95 )
 material/3 = SubResource( 96 )
 
+[node name="SpotLight" type="SpotLight" parent="Models/Phoenix_heavy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36.93 )
+light_color = Color( 1, 0.992157, 0.576471, 1 )
+spot_range = 2000.0
+spot_attenuation = 2.0
+spot_angle = 30.0
+
+[node name="Star_sprite_square_wide" parent="Models/Phoenix_heavy/SpotLight" instance=ExtResource( 6 )]
+
+[node name="Plane" parent="Models/Phoenix_heavy/SpotLight/Star_sprite_square_wide" index="0"]
+material/0 = SubResource( 98 )
+
 [node name="Collision_shapes" type="Node" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Collision_shapes"]
@@ -110,3 +146,4 @@ transform = Transform( 20, 0, 0, 0, 7, 0, 0, 0, 25, 0, 0, 0 )
 shape = SubResource( 91 )
 
 [editable path="Models/Phoenix_heavy"]
+[editable path="Models/Phoenix_heavy/SpotLight/Star_sprite_square_wide"]

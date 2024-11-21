@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode
 	// Vertex or pixel shading (screen-large object can use vertex)
-	vertex_lighting,
+	//vertex_lighting,
 	
 	// Blending and culling.
 	blend_mix,
@@ -86,5 +86,4 @@ void fragment()
 	
 	EMISSION = vec3(lava, 0.0, 0.0);
 	ROUGHNESS = 1.0;
-	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }

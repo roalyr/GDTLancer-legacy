@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Models/Environment/Stellar/Clouds/Nebula_chunky.glb" type="PackedScene" id=1]
+[ext_resource path="res://Materials/Clouds/Nebula_chunky.tres" type="Material" id=2]
+
+[node name="Nebula_chunky" instance=ExtResource( 1 )]
+transform = Transform( 10000, 0, 0, 0, 10000, 0, 0, 0, 10000, 0, 0, 0 )
+
+[node name="Nebula_5" parent="." index="0"]
+material/0 = ExtResource( 2 )

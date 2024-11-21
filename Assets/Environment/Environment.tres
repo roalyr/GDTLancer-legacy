@@ -1,11 +1,11 @@
 [gd_resource type="Environment" load_steps=2 format=2]
 
 [sub_resource type="ProceduralSky" id=1]
-sky_top_color = Color( 0.596078, 0.356863, 0.0823529, 1 )
-sky_horizon_color = Color( 0.00784314, 0.0627451, 0.105882, 1 )
-sky_curve = 1.90009
-ground_bottom_color = Color( 0.0156863, 0.101961, 0.188235, 1 )
-ground_horizon_color = Color( 0.00784314, 0.0627451, 0.105882, 1 )
+sky_top_color = Color( 0, 0, 0, 1 )
+sky_horizon_color = Color( 0.109804, 0.105882, 0.0705882, 1 )
+sky_curve = 0.335892
+ground_bottom_color = Color( 0.207843, 0.423529, 0.317647, 1 )
+ground_horizon_color = Color( 0.109804, 0.105882, 0.0705882, 1 )
 ground_curve = 1.47033
 sun_latitude = -89.77
 sun_curve = 0.000153239
@@ -14,11 +14,12 @@ sun_curve = 0.000153239
 background_mode = 2
 background_sky = SubResource( 1 )
 background_sky_orientation = Basis( 0.854, -0.146, 0.5, 0.5, 0.524, -0.707, -0.146, 0.854, 0.5 )
+background_color = Color( 0.360784, 0.247059, 0.556863, 1 )
 ambient_light_color = Color( 0.054902, 0.054902, 0.054902, 1 )
-fog_color = Color( 0, 0, 0, 1 )
-fog_depth_begin = 4000.0
-fog_depth_end = 1e+06
-fog_depth_curve = 0.217638
+fog_color = Color( 0.207843, 0.423529, 0.317647, 1 )
+fog_depth_begin = 0.0
+fog_depth_end = 400000.0
+fog_depth_curve = 0.5
 tonemap_mode = 4
 dof_blur_far_distance = 8192.0
 dof_blur_far_transition = 8192.0

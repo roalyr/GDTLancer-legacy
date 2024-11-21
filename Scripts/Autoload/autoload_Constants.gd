@@ -12,7 +12,7 @@ var project_name = game_name + "-"  \
 	+ str(system_time["day"])
 
 # CONSTANTS
-const physics_fps = 60
+const physics_fps = 120
 const graphic_fps = 60
 
 
@@ -32,9 +32,9 @@ const velocity_limiter_states = 3
 const maximum_systems_spawned_on_visiting = 3
 
 # CONSTANTS
-const camera_far = 1e10 # 9e18 is a safe cap.
-const camera_near = 0.05 # base value.
-const camera_fov = 50 # Initial value.
+const camera_far = 1e6 #
+const camera_near = 1.0 # 
+const camera_fov = 70 # Initial value.
 
 const camera_turret_roll_vert_limit = 70 # Deg +\-
 # Zoom out times is multiplied by minimum ship camera distance to define maximum.

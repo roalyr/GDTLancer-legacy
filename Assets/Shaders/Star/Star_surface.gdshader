@@ -49,6 +49,7 @@ void fragment()
 	float rim = clamp(pow(abs(dot(NORMAL, VIEW)), rim_exponent)*rim_strength, 1e-6, 1.0);
 
 	float distance_factor = clamp(pow(length(VERTEX)/detail_decay_distance, detail_decay_power), 0.0, 1.0);
+	
 
 	ALBEDO = abs(detail_major * major_detail_intensity * WHITE) * (1.0 - distance_factor);
 	ALBEDO += overlay_color.rgb ;

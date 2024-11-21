@@ -40,5 +40,4 @@ void vertex()
 void fragment()
 {
 	ALBEDO = albedo.rgb * pow(COLOR.r, power);
-	DEPTH = log2(max(1e-6, 1.0 -gl_Position_z)) * Fcoef;
 }

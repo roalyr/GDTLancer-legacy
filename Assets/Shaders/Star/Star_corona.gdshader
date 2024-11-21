@@ -52,6 +52,7 @@ void fragment()
 {
 	float dt = clamp(abs(dot(NORMAL,VIEW)), 1e-6, 1.0);
 	float corona = clamp(pow(dt, exp(exponent_corona))*strength_corona, 1e-6, 1.0);
+	
 	ALBEDO =  pow(corona, exponent_corona_rim)*corona_color.rgb;
 	ALBEDO *= corona_floor - pow(noise_val, corona_floor_power);
 }

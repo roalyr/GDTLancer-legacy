@@ -23,7 +23,7 @@ uniform float distance_fade_max = 5.0;
 void fragment()
 {
 	ALBEDO = albedo.rgb;
-	ALBEDO *= clamp(smoothstep(distance_fade_max, 0.0, length(VERTEX)), 1e-6, 1.0);
+	ALPHA = clamp(smoothstep(distance_fade_max, 0.0, length(VERTEX)), 0.0, 1.0);
 	METALLIC = 0.4;
 	ROUGHNESS = 0.6;
 }

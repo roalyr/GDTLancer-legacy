@@ -1,8 +1,6 @@
-[gd_resource type="Theme" load_steps=24 format=2]
+[gd_resource type="Theme" load_steps=22 format=2]
 
 [ext_resource path="res://Assets/Themes/Default/Elements/Fonts/Default_dynamicfont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Assets/UI_images/PNG/buttons/slider_horiz_100_flat.png" type="Texture" id=2]
-[ext_resource path="res://Assets/UI_images/PNG/buttons/slider_vert_100_flat.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0, 0, 0, 0.376471 )
@@ -178,9 +176,9 @@ HScrollBar/styles/grabber_highlight = SubResource( 22 )
 HScrollBar/styles/grabber_pressed = SubResource( 22 )
 HScrollBar/styles/scroll = SubResource( 23 )
 HScrollBar/styles/scroll_focus = SubResource( 23 )
-HSlider/icons/grabber = ExtResource( 2 )
-HSlider/icons/grabber_disabled = ExtResource( 2 )
-HSlider/icons/grabber_highlight = ExtResource( 2 )
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
 HSlider/icons/tick = SubResource( 18 )
 HSlider/styles/grabber_area = SubResource( 17 )
 HSlider/styles/grabber_area_highlight = SubResource( 17 )
@@ -209,9 +207,9 @@ VScrollBar/styles/grabber_highlight = SubResource( 20 )
 VScrollBar/styles/grabber_pressed = SubResource( 20 )
 VScrollBar/styles/scroll = SubResource( 9 )
 VScrollBar/styles/scroll_focus = SubResource( 9 )
-VSlider/icons/grabber = ExtResource( 3 )
-VSlider/icons/grabber_disabled = ExtResource( 3 )
-VSlider/icons/grabber_highlight = ExtResource( 3 )
+VSlider/icons/grabber = null
+VSlider/icons/grabber_disabled = null
+VSlider/icons/grabber_highlight = null
 VSlider/icons/tick = SubResource( 18 )
 VSlider/styles/grabber_area = SubResource( 26 )
 VSlider/styles/grabber_area_highlight = SubResource( 26 )

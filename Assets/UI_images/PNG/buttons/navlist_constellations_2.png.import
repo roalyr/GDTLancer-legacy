@@ -3,17 +3,16 @@
 importer="texture"
 type="StreamTexture"
 path.s3tc="res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.s3tc.stex"
-path.etc2="res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.etc2.stex"
 path.etc="res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.etc.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2", "etc" ],
+"imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/UI_images/PNG/buttons/navlist_constellations_2.png"
-dest_files=[ "res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.s3tc.stex", "res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.etc2.stex", "res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.etc.stex" ]
+dest_files=[ "res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.s3tc.stex", "res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.etc.stex" ]
 
 [params]
 
