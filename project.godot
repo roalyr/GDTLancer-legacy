@@ -241,5 +241,6 @@ gles2/compatibility/enable_high_float.Android=true
 gles3/shaders/max_simultaneous_compiles=1
 gles3/shaders/shader_cache_size_mb=128
 quality/lightmapping/use_bicubic_sampling=false
+quality/filters/use_debanding=true
 quality/depth/hdr=false
 environment/default_environment="res://Assets/Environment/Environment.tres"
