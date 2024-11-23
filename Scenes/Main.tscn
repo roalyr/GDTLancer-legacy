@@ -20,4 +20,3 @@ script = ExtResource( 2 )
 [node name="Global_space" parent="_EDITOR_OBJECTS_" instance=ExtResource( 3 )]
 
 [node name="Ship_package" parent="_EDITOR_OBJECTS_" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11894.4, 4208.66, -15697.1 )

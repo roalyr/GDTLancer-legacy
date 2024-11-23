@@ -4,15 +4,15 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/albedo = Color( 0.45098, 0.45098, 0.45098, 1 )
+shader_param/albedo = Color( 0.721569, 0.521569, 0.454902, 1 )
 shader_param/emission = Color( 0, 0, 0, 1 )
-shader_param/specular = 3.059
-shader_param/metallic = 0.662
-shader_param/roughness = -0.122
+shader_param/specular = 1.899
+shader_param/metallic = 1.701
+shader_param/roughness = -0.254
 shader_param/fade_start = 0.0
 shader_param/fade_end = 40000.0
 shader_param/fade_power = 2.0
 shader_param/highlight_end = 1000.0
 shader_param/highlight_power = 2.0
-shader_param/highlight_strength = 1.0
+shader_param/highlight_strength = 0.5
 shader_param/dither_threshold = 0.5

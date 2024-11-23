@@ -144,7 +144,6 @@ func camera_common_behavior():
 	var fin_push = Vector2(PlayerState.ship_linear_velocity, 0.0)
 	var fin_fov = Vector2(PlayerState.ship_linear_velocity, 0.0)
 	var fin_brightness = Vector2(PlayerState.ship_linear_velocity, 0.0)
-	var fin_near = Vector2(PlayerState.ship_linear_velocity, 0.0)
 	# Intermediate interpolation values.
 	var tmp_push = init_push.linear_interpolate(fin_push, 
 		pow(get_physics_process_delta_time() * camera_push_velocity_factor, camera_push_velocity_power))

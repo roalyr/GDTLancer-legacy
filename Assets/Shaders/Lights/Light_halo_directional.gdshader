@@ -25,8 +25,8 @@ uniform float rim_outer_strength = 3.0;
 uniform float rim_outer_exponent = 3.0;
 uniform float alpha_clip :   hint_range(0.0, 1.0, 5e-4) = 1.0;
 
-uniform float scale:  hint_range(0.0, 100.0, 5e-4) = 5.0;
-uniform float scale_max:  hint_range(0.0, 100.0, 5e-4) = 3.0;
+uniform float scale:  hint_range(0.0, 100.0, 5e-4) = 1.0;
+uniform float scale_max:  hint_range(0.0, 100.0, 5e-4) = 2.0;
 uniform float beam_width_power :  hint_range(0.0, 2.0, 5e-4) = 1.0;
 uniform float beam_width_focus :  hint_range(0.0, 10.0, 5e-4) = 0.8;
 uniform float beam_dist_power :  hint_range(0.0, 1.0, 5e-4) = 0.4;

@@ -251,43 +251,23 @@ func init_ship():
 
 func adjust_exhaust():
 	
-	var accel_val = 100
+	var accel_val = 20
 	var engines = current_ship.get_node("Engines")
 	for i in engines.get_children():
-		
-		var albedo = accel_val
 
 		# Adjust light intensity
 		if PlayerState.acceleration > 0:
+			i.get_node("Engine_exhaust_shapes").show()
 			i.get_node("Engine_exhaust_shapes").scale.z = accel_val
 			i.get_node("Engine_exhaust_shapes").scale.x = accel_val*1e-1
 			i.get_node("Engine_exhaust_shapes").scale.y = accel_val*1e-1
 			if i.get_node("Engine_exhaust_shapes").scale.x >= exhaust_shape_size_xy_max:
 				i.get_node("Engine_exhaust_shapes").scale.x = exhaust_shape_size_xy_max
 				i.get_node("Engine_exhaust_shapes").scale.y = exhaust_shape_size_xy_max
-			albedo = accel_val
 		else:
-			i.get_node("Engine_exhaust_shapes").scale.z = 0
-			albedo = 0
+			i.get_node("Engine_exhaust_shapes").hide()
+
 			
-			
-		# Get and modify sprite intensity.
-		var shapes = i.get_node("Engine_exhaust_shapes")
-		for shape in shapes.get_children():
-			var m = shape.get_child(0).get_surface_material(0)
-			
-			m["shader_param/albedo"].r = clamp(albedo*0.4, 1e-6, 0.6)
-			m["shader_param/albedo"].g = clamp(albedo*0.1, 1e-6, 0.2)
-			m["shader_param/albedo"].b = clamp(albedo*0.05, 1e-6, 0.8)
-		
-				# Get and modify sprite intensity.
-		shapes = i.get_node("Engine_static_shapes")
-		for shape in shapes.get_children():
-			var m = shape.get_child(0).get_surface_material(0)
-			
-			m["shader_param/albedo"].r = clamp(albedo*0.4, 1e-6, 0.6)
-			m["shader_param/albedo"].g = clamp(albedo*0.1, 1e-6, 0.2)
-			m["shader_param/albedo"].b = clamp(albedo*0.05, 1e-6, 0.8)
 
 func is_accelerating(accelerating):
 

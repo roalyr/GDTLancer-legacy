@@ -1,109 +1,53 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Assets/Shaders/FX/Engine_exhaust.gdshader" type="Shader" id=1]
+[ext_resource path="res://Materials/FX/Engine_exhaust.tres" type="Material" id=1]
 [ext_resource path="res://Scenes/Editor_scenes/_EDITOR_OBJECTS_.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Models/FX/Exhaust_cone_expanding.glb" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Models/FX/Exhaust_cone_expanding_cut.glb" type="PackedScene" id=4]
-
-[sub_resource type="ArrayMesh" id=1]
-resource_name = "Cylinder.001"
-surfaces/0 = {
-"aabb": AABB( -0.951056, 0, -1, 1.90211, 10, 2 ),
-"array_data": PoolByteArray( 217, 251, 234, 62, 0, 0, 160, 64, 187, 182, 33, 191, 74, 6, 154, 0, 154, 0, 182, 127, 115, 115, 115, 255, 51, 59, 0, 52, 39, 27, 62, 63, 0, 0, 160, 64, 160, 19, 119, 190, 120, 6, 217, 0, 217, 0, 136, 127, 115, 115, 115, 255, 102, 58, 0, 52, 121, 120, 115, 63, 0, 0, 0, 0, 122, 55, 158, 190, 120, 5, 217, 0, 217, 0, 136, 127, 255, 255, 255, 255, 102, 58, 0, 56, 20, 121, 22, 63, 0, 0, 0, 0, 189, 27, 79, 191, 74, 5, 154, 0, 154, 0, 182, 127, 255, 255, 255, 255, 51, 59, 0, 56, 25, 27, 62, 63, 0, 0, 160, 64, 160, 19, 119, 62, 120, 6, 39, 0, 39, 0, 136, 127, 115, 115, 115, 255, 153, 57, 0, 52, 104, 120, 115, 63, 0, 0, 0, 0, 122, 55, 158, 62, 120, 5, 39, 0, 39, 0, 136, 127, 255, 255, 255, 255, 153, 57, 0, 56, 217, 251, 234, 62, 0, 0, 160, 64, 187, 182, 33, 63, 74, 6, 102, 0, 102, 0, 182, 127, 115, 115, 115, 255, 204, 56, 0, 52, 20, 121, 22, 63, 0, 0, 0, 0, 189, 27, 79, 63, 74, 5, 102, 0, 102, 0, 182, 127, 255, 255, 255, 255, 204, 56, 0, 56, 0, 0, 0, 0, 0, 0, 160, 64, 164, 227, 71, 63, 0, 6, 126, 0, 127, 0, 0, 127, 115, 115, 115, 255, 0, 56, 0, 52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 5, 126, 0, 127, 0, 0, 127, 255, 255, 255, 255, 0, 56, 0, 56, 217, 251, 234, 190, 0, 0, 160, 64, 187, 182, 33, 63, 182, 6, 102, 0, 102, 0, 74, 127, 115, 115, 115, 255, 102, 54, 0, 52, 20, 121, 22, 191, 0, 0, 0, 0, 189, 27, 79, 63, 182, 5, 102, 0, 102, 0, 74, 127, 255, 255, 255, 255, 102, 54, 0, 56, 25, 27, 62, 191, 0, 0, 160, 64, 160, 19, 119, 62, 136, 6, 39, 0, 39, 0, 120, 127, 115, 115, 115, 255, 204, 52, 0, 52, 104, 120, 115, 191, 0, 0, 0, 0, 122, 55, 158, 62, 136, 5, 39, 0, 39, 0, 120, 127, 255, 255, 255, 255, 204, 52, 0, 56, 25, 27, 62, 191, 0, 0, 160, 64, 160, 19, 119, 190, 136, 6, 217, 0, 217, 0, 120, 127, 115, 115, 115, 255, 102, 50, 0, 52, 104, 120, 115, 191, 0, 0, 0, 0, 122, 55, 158, 190, 136, 5, 217, 0, 217, 0, 120, 127, 255, 255, 255, 255, 102, 50, 0, 56, 217, 251, 234, 190, 0, 0, 160, 64, 187, 182, 33, 191, 182, 6, 154, 0, 154, 0, 74, 127, 115, 115, 115, 255, 102, 46, 0, 52, 0, 0, 0, 0, 0, 0, 160, 64, 164, 227, 71, 191, 0, 6, 130, 0, 130, 1, 0, 127, 115, 115, 115, 255, 0, 0, 0, 52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 191, 0, 5, 130, 0, 130, 1, 0, 127, 255, 255, 255, 255, 0, 0, 0, 56, 20, 121, 22, 191, 0, 0, 0, 0, 189, 27, 79, 191, 182, 5, 154, 0, 154, 0, 74, 127, 255, 255, 255, 255, 102, 46, 0, 56, 0, 0, 0, 0, 0, 0, 32, 65, 159, 3, 5, 191, 0, 6, 130, 0, 130, 254, 0, 127, 0, 0, 0, 255, 0, 60, 0, 0, 15, 94, 156, 62, 0, 0, 32, 65, 174, 56, 215, 190, 74, 6, 154, 0, 154, 0, 182, 127, 0, 0, 0, 255, 51, 59, 0, 0, 0, 0, 0, 0, 0, 0, 160, 64, 164, 227, 71, 191, 0, 6, 130, 0, 130, 255, 0, 127, 115, 115, 115, 255, 0, 60, 0, 52, 17, 2, 253, 62, 0, 0, 32, 65, 26, 106, 36, 190, 120, 6, 217, 0, 217, 0, 136, 127, 0, 0, 0, 255, 102, 58, 0, 0, 253, 1, 253, 62, 0, 0, 32, 65, 26, 106, 36, 62, 120, 6, 39, 0, 39, 0, 136, 127, 0, 0, 0, 255, 153, 57, 0, 0, 15, 94, 156, 62, 0, 0, 32, 65, 174, 56, 215, 62, 74, 6, 102, 0, 102, 0, 182, 127, 0, 0, 0, 255, 204, 56, 0, 0, 0, 0, 0, 0, 0, 0, 32, 65, 159, 3, 5, 63, 0, 6, 126, 0, 126, 0, 0, 127, 0, 0, 0, 255, 0, 56, 0, 0, 15, 94, 156, 190, 0, 0, 32, 65, 174, 56, 215, 62, 182, 6, 102, 0, 102, 0, 74, 127, 0, 0, 0, 255, 102, 54, 0, 0, 253, 1, 253, 190, 0, 0, 32, 65, 26, 106, 36, 62, 136, 6, 39, 0, 39, 0, 120, 127, 0, 0, 0, 255, 204, 52, 0, 0, 253, 1, 253, 190, 0, 0, 32, 65, 26, 106, 36, 190, 136, 6, 217, 0, 217, 0, 120, 127, 0, 0, 0, 255, 102, 50, 0, 0, 15, 94, 156, 190, 0, 0, 32, 65, 174, 56, 215, 190, 182, 6, 154, 0, 154, 0, 74, 127, 0, 0, 0, 255, 102, 46, 0, 0, 0, 0, 0, 0, 0, 0, 32, 65, 159, 3, 5, 191, 0, 6, 130, 0, 130, 2, 0, 127, 0, 0, 0, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 191, 0, 5, 130, 0, 130, 255, 0, 127, 255, 255, 255, 255, 0, 60, 0, 56 ),
-"array_index_data": PoolByteArray( 0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0, 1, 0, 5, 0, 4, 0, 1, 0, 2, 0, 5, 0, 4, 0, 7, 0, 6, 0, 4, 0, 5, 0, 7, 0, 6, 0, 9, 0, 8, 0, 6, 0, 7, 0, 9, 0, 8, 0, 11, 0, 10, 0, 8, 0, 9, 0, 11, 0, 10, 0, 13, 0, 12, 0, 10, 0, 11, 0, 13, 0, 12, 0, 15, 0, 14, 0, 12, 0, 13, 0, 15, 0, 16, 0, 18, 0, 17, 0, 16, 0, 19, 0, 18, 0, 20, 0, 0, 0, 21, 0, 20, 0, 22, 0, 0, 0, 14, 0, 19, 0, 16, 0, 14, 0, 15, 0, 19, 0, 21, 0, 1, 0, 23, 0, 21, 0, 0, 0, 1, 0, 23, 0, 4, 0, 24, 0, 23, 0, 1, 0, 4, 0, 24, 0, 6, 0, 25, 0, 24, 0, 4, 0, 6, 0, 25, 0, 8, 0, 26, 0, 25, 0, 6, 0, 8, 0, 26, 0, 10, 0, 27, 0, 26, 0, 8, 0, 10, 0, 27, 0, 12, 0, 28, 0, 27, 0, 10, 0, 12, 0, 28, 0, 14, 0, 29, 0, 28, 0, 12, 0, 14, 0, 29, 0, 16, 0, 30, 0, 29, 0, 14, 0, 16, 0, 30, 0, 17, 0, 31, 0, 30, 0, 16, 0, 17, 0, 22, 0, 3, 0, 0, 0, 22, 0, 32, 0, 3, 0 ),
-"blend_shape_data": [  ],
-"format": 97567,
-"index_count": 120,
-"primitive": 4,
-"skeleton_aabb": [  ],
-"vertex_count": 33
-}
-
-[sub_resource type="ShaderMaterial" id=8]
-shader = ExtResource( 1 )
-shader_param/albedo = Color( 1, 0, 0.533333, 1 )
-shader_param/pulse_amount = 0.05
-shader_param/pulse_frequency = 50.0
-shader_param/power = 3.379
-shader_param/Fcoef = 0.001
-
-[sub_resource type="ArrayMesh" id=3]
-resource_name = "Cone"
-surfaces/0 = {
-"aabb": AABB( -0.951056, -0.0035963, -1, 1.90211, 2, 2 ),
-"array_data": PoolByteArray( 0, 0, 0, 0, 252, 175, 107, 187, 0, 0, 128, 191, 0, 56, 143, 0, 127, 0, 0, 127, 0, 52, 20, 56, 0, 0, 0, 0, 43, 138, 255, 63, 0, 0, 0, 128, 0, 127, 0, 0, 127, 0, 0, 127, 0, 52, 0, 58, 25, 121, 22, 63, 252, 175, 107, 187, 191, 27, 79, 191, 66, 56, 165, 0, 85, 162, 3, 127, 65, 54, 114, 56, 112, 120, 115, 63, 252, 175, 107, 187, 122, 55, 158, 190, 108, 56, 221, 0, 59, 144, 0, 127, 166, 55, 104, 57, 112, 120, 115, 63, 252, 175, 107, 187, 122, 55, 158, 62, 108, 56, 35, 0, 59, 144, 0, 127, 166, 55, 151, 58, 23, 121, 22, 63, 252, 175, 107, 187, 189, 27, 79, 63, 66, 56, 91, 0, 85, 162, 253, 127, 65, 54, 141, 59, 0, 0, 0, 0, 252, 175, 107, 187, 0, 0, 128, 63, 0, 56, 113, 0, 127, 0, 0, 127, 0, 52, 235, 59, 27, 121, 22, 191, 252, 175, 107, 187, 187, 27, 79, 63, 190, 56, 91, 0, 85, 94, 3, 127, 248, 46, 141, 59, 112, 120, 115, 191, 252, 175, 107, 187, 125, 55, 158, 62, 148, 56, 35, 0, 59, 112, 0, 127, 145, 37, 151, 58, 112, 120, 115, 191, 252, 175, 107, 187, 125, 55, 158, 190, 148, 56, 221, 0, 59, 112, 0, 127, 145, 37, 104, 57, 20, 121, 22, 191, 252, 175, 107, 187, 194, 27, 79, 191, 190, 56, 165, 0, 85, 94, 253, 127, 248, 46, 114, 56 ),
-"array_index_data": PoolByteArray( 0, 0, 2, 0, 1, 0, 2, 0, 3, 0, 1, 0, 3, 0, 4, 0, 1, 0, 4, 0, 5, 0, 1, 0, 5, 0, 6, 0, 1, 0, 6, 0, 7, 0, 1, 0, 7, 0, 8, 0, 1, 0, 8, 0, 9, 0, 1, 0, 9, 0, 10, 0, 1, 0, 10, 0, 0, 0, 1, 0 ),
-"blend_shape_data": [  ],
-"format": 97559,
-"index_count": 30,
-"primitive": 4,
-"skeleton_aabb": [  ],
-"vertex_count": 11
-}
+[ext_resource path="res://Materials/FX/Engine_exhaust_2.tres" type="Material" id=5]
+[ext_resource path="res://Materials/FX/Engine_exhaust_3.tres" type="Material" id=6]
+[ext_resource path="res://Materials/FX/Engine_exhaust_4.tres" type="Material" id=7]
 
 [node name="Engine_exhaust_blue" type="Position3D"]
 
 [node name="_EDITOR_OBJECTS_" parent="." instance=ExtResource( 2 )]
 
-[node name="Exhaust_narrowing" type="MeshInstance" parent="_EDITOR_OBJECTS_"]
-transform = Transform( 1, 0, 0, 0, -1.31134e-08, -1, 0, 0.3, -4.37114e-08, 0, 0, 0 )
-visible = false
-mesh = SubResource( 1 )
-skeleton = NodePath("../../Engine_exhaust_shapes")
-material/0 = SubResource( 8 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Cone" type="MeshInstance" parent="_EDITOR_OBJECTS_"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-11, -1, 0, 0.001, -4.37114e-08, 0, 0, 0 )
-visible = false
-mesh = SubResource( 3 )
-skeleton = NodePath("../../Engine_exhaust_shapes")
-material/0 = SubResource( 8 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Cone2" type="MeshInstance" parent="_EDITOR_OBJECTS_"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-visible = false
-mesh = SubResource( 3 )
-skeleton = NodePath("../../Engine_exhaust_shapes")
-material/0 = SubResource( 8 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="Engine_static_shapes" type="Spatial" parent="."]
-
-[node name="Exhaust_cone_expanding" parent="Engine_static_shapes" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.91 )
-
-[node name="Cone_expanding" parent="Engine_static_shapes/Exhaust_cone_expanding" index="0"]
-material/0 = SubResource( 8 )
 
 [node name="Exhaust_cone_expanding2" parent="Engine_static_shapes" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, -1.80091e-08, -1, 0, 0.412, -4.37114e-08, 0, 0, 0.263 )
 
 [node name="Cone_expanding" parent="Engine_static_shapes/Exhaust_cone_expanding2" index="0"]
-material/0 = SubResource( 8 )
+material_override = ExtResource( 6 )
 
 [node name="Exhaust_cone_expanding_cut" parent="Engine_static_shapes" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 0.6, 0, 0, 0, -8.74228e-09, 0.6, 0, -0.2, -2.62268e-08, 0, 0, 0 )
 
 [node name="Cone_expanding_cut" parent="Engine_static_shapes/Exhaust_cone_expanding_cut" index="0"]
-material/0 = SubResource( 8 )
+material_override = ExtResource( 6 )
 
 [node name="Engine_exhaust_shapes" type="Spatial" parent="."]
 
 [node name="Exhaust_cone_expanding_cut" parent="Engine_exhaust_shapes" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -1.74846e-08, 1, 0, -0.4, -4.37114e-08, 0, 0, 0 )
 
 [node name="Cone_expanding_cut" parent="Engine_exhaust_shapes/Exhaust_cone_expanding_cut" index="0"]
-material/0 = SubResource( 8 )
+material/0 = ExtResource( 1 )
 
-[editable path="Engine_static_shapes/Exhaust_cone_expanding"]
+[node name="Exhaust_cone_expanding_cut2" parent="Engine_exhaust_shapes" instance=ExtResource( 4 )]
+transform = Transform( 1.1, 0, 0, 0, -4.37114e-08, 1.1, 0, -1, -4.80825e-08, 0, 0, 0 )
+
+[node name="Cone_expanding_cut" parent="Engine_exhaust_shapes/Exhaust_cone_expanding_cut2" index="0"]
+material/0 = ExtResource( 5 )
+
+[node name="Exhaust_cone_expanding2" parent="Engine_exhaust_shapes" instance=ExtResource( 3 )]
+transform = Transform( 0.8, 0, 0, 0, -4.37114e-10, -0.8, 0, 0.01, -3.49691e-08, 0, 0, 0.03 )
+
+[node name="Cone_expanding" parent="Engine_exhaust_shapes/Exhaust_cone_expanding2" index="0"]
+material_override = ExtResource( 7 )
+
 [editable path="Engine_static_shapes/Exhaust_cone_expanding2"]
 [editable path="Engine_static_shapes/Exhaust_cone_expanding_cut"]
 [editable path="Engine_exhaust_shapes/Exhaust_cone_expanding_cut"]
+[editable path="Engine_exhaust_shapes/Exhaust_cone_expanding_cut2"]
+[editable path="Engine_exhaust_shapes/Exhaust_cone_expanding2"]

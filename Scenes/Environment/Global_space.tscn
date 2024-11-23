@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Assets/Shaders/Star/Star_surface.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/Shaders/Star/Star_corona.gdshader" type="Shader" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://Assets/Shaders/Lights/Light_distant_sprite.gdshader" type="Shader" id=7]
 [ext_resource path="res://Assets/Models/Sprites/Star_sprite_square_wide.glb" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Environment/Stellar_objects/Asteroids/Asteroids.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Materials/Asteroids/Asteroids.tres" type="Material" id=10]
+[ext_resource path="res://Materials/Asteroids/Planets.tres" type="Material" id=10]
 [ext_resource path="res://Scenes/Environment/Stellar_objects/Clouds/Nebula_chunky.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Models/Background/Galactic_background.glb" type="PackedScene" id=12]
 [ext_resource path="res://Assets/Shaders/Starsphere/Starsphere_background.gdshader" type="Shader" id=13]
@@ -70,9 +70,41 @@ shader_param/displacement_texture = SubResource( 10 )
 [sub_resource type="SphereMesh" id=4]
 radial_segments = 32
 
+[sub_resource type="ShaderMaterial" id=23]
+shader = ExtResource( 4 )
+shader_param/albedo = Color( 0, 0.0980392, 0.0392157, 1 )
+shader_param/rim_strength = 5.0
+shader_param/rim_exponent = 30.0
+shader_param/rim_power = 0.5
+shader_param/rim_floor = 0.5
+shader_param/rim_outer_strength = 3.0
+shader_param/rim_outer_exponent = 3.0
+shader_param/alpha_clip = 1.0
+shader_param/scale = 1.0
+shader_param/scale_max = 2.5
+shader_param/beam_width_power = 1.0
+shader_param/beam_width_focus = 0.8
+shader_param/beam_dist_power = 0.5
+shader_param/fade = 10000.0
+shader_param/fade_power = 1.0
+
+[sub_resource type="ShaderMaterial" id=24]
+shader = ExtResource( 7 )
+shader_param/albedo = Color( 0.278431, 0.847059, 0, 1 )
+shader_param/scale = 1.0
+shader_param/attenuation = 0.5
+shader_param/flare_distance = 5.0
+shader_param/flare_size = 2.0
+shader_param/intensity = 0.5
+shader_param/exponent = 5.0
+shader_param/pulse_factor = 0.9645
+shader_param/pulse_rate = 5.5
+shader_param/phase = 0.0
+shader_param/distance_fade_max = 1000.0
+
 [sub_resource type="ShaderMaterial" id=11]
 shader = ExtResource( 4 )
-shader_param/albedo = Color( 0.14902, 0.00784314, 0.00784314, 1 )
+shader_param/albedo = Color( 0.109804, 0.0980392, 0, 1 )
 shader_param/rim_strength = 5.0
 shader_param/rim_exponent = 30.0
 shader_param/rim_power = 0.5
@@ -90,7 +122,7 @@ shader_param/fade_power = 1.0
 
 [sub_resource type="ShaderMaterial" id=13]
 shader = ExtResource( 7 )
-shader_param/albedo = Color( 1, 0, 0.447059, 1 )
+shader_param/albedo = Color( 1, 0.85098, 0, 1 )
 shader_param/scale = 1.0
 shader_param/attenuation = 0.5
 shader_param/flare_distance = 5.0
@@ -143,27 +175,29 @@ __meta__ = {
 
 [node name="_EDITOR OBJECTS_" parent="." instance=ExtResource( 5 )]
 
-[node name="Star_1e3" type="Spatial" parent="."]
-transform = Transform( 1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 78805.5, -33865.6, 41774.3 )
+[node name="Star_2e3" type="Spatial" parent="."]
+transform = Transform( 2000, 0, 0, 0, 2000, 0, 0, 0, 2000, -38715.9, 94404.7, 142592 )
 
-[node name="Surface" type="MeshInstance" parent="Star_1e3"]
+[node name="Surface" type="MeshInstance" parent="Star_2e3"]
+visible = false
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
-[node name="Corona" type="MeshInstance" parent="Star_1e3"]
+[node name="Corona" type="MeshInstance" parent="Star_2e3"]
+visible = false
 mesh = SubResource( 3 )
 material/0 = SubResource( 8 )
 
-[node name="Halo" type="MeshInstance" parent="Star_1e3"]
+[node name="Halo" type="MeshInstance" parent="Star_2e3"]
 mesh = SubResource( 4 )
-material/0 = SubResource( 11 )
+material/0 = SubResource( 23 )
 
-[node name="Star_sprite_square_wide" parent="Star_1e3" instance=ExtResource( 8 )]
+[node name="Star_sprite_square_wide" parent="Star_2e3" instance=ExtResource( 8 )]
 
-[node name="Plane" parent="Star_1e3/Star_sprite_square_wide" index="0"]
-material/0 = SubResource( 13 )
+[node name="Plane" parent="Star_2e3/Star_sprite_square_wide" index="0"]
+material/0 = SubResource( 24 )
 
-[node name="OmniLight" type="OmniLight" parent="Star_1e3"]
+[node name="OmniLight" type="OmniLight" parent="Star_2e3"]
 transform = Transform( 0.0001, 0, 0, 0, 0.0001, 0, 0, 0, 0.0001, 0, 0, 0 )
 visible = false
 light_color = Color( 0.4, 0, 0.0666667, 1 )
@@ -172,9 +206,10 @@ omni_range = 500000.0
 omni_attenuation = 1.03527
 
 [node name="Star_1e4" type="Spatial" parent="."]
-transform = Transform( 10000, 0, 0, 0, 10000, 0, 0, 0, 10000, 41901.6, -75353.3, -120793 )
+transform = Transform( 10000, 0, 0, 0, 10000, 0, 0, 0, 10000, 38315.7, -96021.4, -139790 )
 
 [node name="Surface" type="MeshInstance" parent="Star_1e4"]
+visible = false
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
@@ -192,52 +227,55 @@ material/0 = SubResource( 11 )
 material/0 = SubResource( 13 )
 
 [node name="OmniLight" type="OmniLight" parent="Star_1e4"]
-visible = false
-light_color = Color( 0.4, 0, 0.0666667, 1 )
-light_energy = 0.65
-omni_range = 500000.0
-omni_attenuation = 1.03527
+light_color = Color( 1, 0.996078, 0.729412, 1 )
+light_energy = 0.199
+omni_range = 1e+06
 
 [node name="Pillars" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 6012.21, 1157.16, 1997.28 )
+
+[node name="Pillars2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -19006.4, -22503.7, -6183.04 )
+
+[node name="Pillars3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -13815.4, 11129.3, -20528.2 )
 
 [node name="Asteroids" parent="." instance=ExtResource( 9 )]
-transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 5881.81, 103.942, 1881.23 )
+transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 470.204, -1525.67, -1158.97 )
 
 [node name="Asteroids2" parent="." instance=ExtResource( 9 )]
-transform = Transform( -60.7691, 13.7614, -78.216, 28.8472, 95.5852, -5.59516, 73.993, -25.9632, -62.056, 11490.8, 377.502, 12214.2 )
+transform = Transform( -60.7691, 13.7614, -78.216, 28.8472, 95.5852, -5.59516, 73.993, -25.9632, -62.056, -3710.99, -3951.61, -11856.4 )
 
 [node name="Asteroids3" parent="." instance=ExtResource( 9 )]
-transform = Transform( -80.8221, 1.04754, 58.8787, 4.97379, 99.7484, 5.0528, -58.6776, 7.01228, -80.6708, 9174.76, 317.592, -5557.55 )
+transform = Transform( -80.8221, 1.04754, 58.8787, 4.97379, 99.7484, 5.0528, -58.6776, 7.01228, -80.6708, 4628.76, -6215.43, -17616.5 )
 
-[node name="Asteroids4" parent="." instance=ExtResource( 9 )]
-transform = Transform( -80.8221, 1.04754, 58.8787, 4.97379, 99.7484, 5.0528, -58.6776, 7.01228, -80.6708, 7023.74, 1757.23, 29663.7 )
-visible = false
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 12021.1, 4010.63, -16305.1 )
+[node name="Planet" type="MeshInstance" parent="."]
+transform = Transform( 1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 9997.81, -8033.5, -12691 )
+material_override = ExtResource( 10 )
 mesh = SubResource( 14 )
-material/0 = ExtResource( 10 )
 
-[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+[node name="StaticBody" type="StaticBody" parent="Planet"]
 
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Planet/StaticBody"]
 shape = SubResource( 21 )
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 5000, 0, 0, 0, 5000, 0, 0, 0, 5000, 47132.6, -12365.2, 17225.6 )
+[node name="Planet2" type="MeshInstance" parent="."]
+transform = Transform( 5000, 0, 0, 0, 5000, 0, 0, 0, 5000, 18300.8, -8302.9, -19670.8 )
+material_override = ExtResource( 10 )
 mesh = SubResource( 14 )
-material/0 = ExtResource( 10 )
 
-[node name="StaticBody" type="StaticBody" parent="MeshInstance2"]
+[node name="StaticBody" type="StaticBody" parent="Planet2"]
 
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance2/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Planet2/StaticBody"]
 shape = SubResource( 22 )
 
 [node name="Nebula_chunky" parent="." instance=ExtResource( 11 )]
 transform = Transform( 10000, 0, 0, 0, 10000, 0, 0, 0, 10000, 77659.9, -19097.8, -4212.51 )
+visible = false
 
 [node name="Galactic_background" parent="." instance=ExtResource( 12 )]
 transform = Transform( 100000, 0, 0, 0, 100000, 0, 0, 0, 100000, 0, 0, 0 )
+visible = false
 
 [node name="Ellipsoid_core" parent="Galactic_background" index="0"]
 visible = false
@@ -272,6 +310,6 @@ material/0 = SubResource( 19 )
 [node name="Stars_belt3" parent="Galactic_background" index="10"]
 material/0 = SubResource( 20 )
 
-[editable path="Star_1e3/Star_sprite_square_wide"]
+[editable path="Star_2e3/Star_sprite_square_wide"]
 [editable path="Star_1e4/Star_sprite_square_wide"]
 [editable path="Galactic_background"]
