@@ -13,7 +13,7 @@ render_mode
 
 	// Additional flags just in case.
 	ambient_light_disabled,
-	depth_draw_opaque;
+	depth_draw_never;
 
 uniform vec4 albedo : hint_color;
 uniform float rim_strength = 5.0;

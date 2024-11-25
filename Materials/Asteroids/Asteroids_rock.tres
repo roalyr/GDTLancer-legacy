@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Shaders/Solid/Solid_dither_alpha_0x0.gdshader" type="Shader" id=1]
+
+[resource]
+render_priority = -1
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 0.431373, 0.431373, 0.431373, 1 )
+shader_param/emission = Color( 0, 0, 0, 1 )
+shader_param/specular = 0.0
+shader_param/metallic = 0.0
+shader_param/roughness = 0.0
+shader_param/fade_start = 50000.0
+shader_param/fade_end = 100000.0
+shader_param/fade_power = 2.0
+shader_param/alpha_threshold = 0.0
+shader_param/highlight_end = 1000.0
+shader_param/highlight_power = 2.0
+shader_param/highlight_strength = 0.5

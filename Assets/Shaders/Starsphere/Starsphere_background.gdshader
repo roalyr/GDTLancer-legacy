@@ -20,6 +20,6 @@ uniform vec4 albedo : hint_color;
 
 
 void fragment() {
-	ALBEDO = albedo.rgb * COLOR.r * COLOR.r ;
+	ALBEDO = albedo.rgb * COLOR.r  ;
 	DEPTH = 1.0;
 }

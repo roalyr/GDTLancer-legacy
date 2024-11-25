@@ -1,35 +1,35 @@
 shader_type spatial;
 
 render_mode
-    //vertex_lighting,
+	//vertex_lighting,
     blend_mix,
     cull_back,
-    diffuse_burley, 
+    diffuse_burley,
     specular_schlick_ggx,
-    depth_draw_opaque;
+    depth_draw_always; // Ensures depth testing with alpha support
 
 // Material properties
 uniform vec4 albedo : hint_color = vec4(1.0);
-uniform vec4 emission : hint_color = vec4(0.0,0.0,0.0,1.0);
-uniform float specular : hint_range(0.0, 10.0) = 0.5;
-uniform float metallic = 1.0;
-uniform float roughness = 0.5;
+uniform vec4 emission : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform float specular : hint_range(0.0, 2.0) = 0.5;
+uniform float metallic : hint_range(-2.0, 2.0) = 1.0;
+uniform float roughness : hint_range(-3.0, 3.0) = 0.5;
 
 // Fade start and end distances
-uniform float fade_start = 0.0;
-uniform float fade_end = 4e4;
+uniform float fade_start = 1e4;
+uniform float fade_end = 3e4;
 uniform float fade_power = 2.0;
-
-uniform float highlight_end = 1e3;
-uniform float highlight_power = 2.0;
-uniform float highlight_strength = 0.0;
 
 // Dither threshold for the dithering effect
 uniform float dither_threshold : hint_range(0.0, 1.0) = 0.5;
+uniform float alpha_threshold : hint_range(0.0, 1.0) = 0.0;
+
+uniform float highlight_end = 1e3;
+uniform float highlight_power = 2.0;
+uniform float highlight_strength = 0.0; 
 
 // Function to calculate Bayer matrix value dynamically for an 8x8 matrix
 float bayer8x8(int x, int y) {
-    // Flattened 8x8 Bayer matrix
     float bayer[64];
     bayer[0] = 0.0;  bayer[1] = 32.0; bayer[2] = 8.0;  bayer[3] = 40.0; bayer[4] = 2.0;  bayer[5] = 34.0; bayer[6] = 10.0; bayer[7] = 42.0;
     bayer[8] = 48.0; bayer[9] = 16.0; bayer[10] = 56.0; bayer[11] = 24.0; bayer[12] = 50.0; bayer[13] = 18.0; bayer[14] = 58.0; bayer[15] = 26.0;
@@ -55,17 +55,23 @@ void fragment() {
     int y = int(mod(FRAGCOORD.y, 8.0));
     float dither_value = bayer8x8(x, y);
 
-    // Discard pixel based on the fade factor and Bayer matrix value
-    if (fade_factor <= dither_value * dither_threshold) {
-        discard;
-    }
+	// Set a threshold below which fragments are fully transparent
+	if (fade_factor < alpha_threshold && fade_factor > 0.01) {
+	    ALPHA = alpha_threshold;
+	} else if (fade_factor < 0.01) {
+		ALPHA = 0.0;
+	} else {
+	    // Calculate final alpha blending
+		float dither_alpha = step(dither_value, fade_factor);
+		ALPHA = mix(fade_factor, dither_alpha, dither_threshold);
+	}
 	
-    float highlight_factor = pow(clamp((highlight_end - distance_vert) / highlight_end, 0.0, 1.0), highlight_power);
-
+	float highlight_factor = pow(clamp((highlight_end - distance_vert) / highlight_end, 0.0, 1.0), highlight_power); 
+	
     // Set the material properties
-    ALBEDO = albedo.rgb*COLOR.rgb;
+    ALBEDO = albedo.rgb * COLOR.rgb;
 	ALBEDO += highlight_factor * highlight_strength;
-	EMISSION = emission.rgb*COLOR.rgb ;
+    EMISSION = emission.rgb * COLOR.rgb;
     SPECULAR = specular;
     METALLIC = metallic;
     ROUGHNESS = roughness;
