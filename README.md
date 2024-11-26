@@ -14,7 +14,7 @@ For example, game runs at 60 FPS on ThinkPad x230 or Motorola G60 at 70-100% ren
 
 Reuirements are as follows:
 
-- GPU which supports GLES3.
+- GPU which supports GLES2.
 - Windows x86-64, Linux x86-64, Android ARMv7, Android ARMv8 (additional builds are possible).
 - Screen ratio 16:9 and wider (qHD, HD, FHD, QHD, etc.)
 - Mouse + Keyboard or touchscreen.
