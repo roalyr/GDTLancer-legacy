@@ -4,20 +4,20 @@ render_mode
 	//vertex_lighting,
     blend_mix,
     cull_back,
-    diffuse_burley,
+    diffuse_oren_nayar,
     specular_schlick_ggx,
     depth_draw_always; // Ensures depth testing with alpha support
 
 // Material properties
 uniform vec4 albedo : hint_color = vec4(1.0);
 uniform vec4 emission : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform float specular : hint_range(0.0, 2.0) = 0.5;
-uniform float metallic : hint_range(-2.0, 2.0) = 1.0;
-uniform float roughness : hint_range(-3.0, 3.0) = 0.5;
+uniform float specular : hint_range(0.0, 5.0) = 0.5;
+uniform float metallic : hint_range(-5.0, 5.0) = 1.0;
+uniform float roughness : hint_range(-5.0, 5.0) = 0.5;
 
 // Fade start and end distances
-uniform float fade_start = 0.0;
-uniform float fade_end = 40000.0;
+uniform float fade_start = 2e4;
+uniform float fade_end = 4e4;
 uniform float fade_power = 2.0;
 
 // Dither threshold for the dithering effect

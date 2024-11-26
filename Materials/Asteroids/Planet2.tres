@@ -1,19 +1,40 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Shaders/Solid/Solid_dither_alpha_0x0.gdshader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/Noise/BW/Marble 7 - 512x512.png" type="Texture" id=3]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+period = 174.0
+lacunarity = 3.13
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
 
 [resource]
 render_priority = -1
 shader = ExtResource( 1 )
-shader_param/albedo = Color( 0.337255, 0.984314, 1, 1 )
+shader_param/albedo = Color( 0.00392157, 0.411765, 0.588235, 1 )
 shader_param/emission = Color( 0, 0, 0, 1 )
-shader_param/specular = 0.5
-shader_param/metallic = 0.0
-shader_param/roughness = -0.5
-shader_param/fade_start = 50000.0
-shader_param/fade_end = 150000.0
+shader_param/specular = 3.074
+shader_param/metallic = -1.613
+shader_param/roughness = 0.0
+shader_param/smr_multiplier = 0.894
+shader_param/fade_start = 20000.0
+shader_param/fade_end = 40000.0
 shader_param/fade_power = 2.0
 shader_param/alpha_threshold = 0.0
 shader_param/highlight_end = 1000.0
 shader_param/highlight_power = 2.0
-shader_param/highlight_strength = 1.0
+shader_param/highlight_strength = 0.0
+shader_param/detail_blend_factor = 0.304
+shader_param/normal_scale = 0.0
+shader_param/normal_blend_factor = 0.5
+shader_param/uv1_blend_sharpness = 10.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_blend_sharpness = 10.0
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/texture_detail_1 = SubResource( 2 )
+shader_param/texture_detail_2 = ExtResource( 3 )
