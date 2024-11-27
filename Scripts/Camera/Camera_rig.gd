@@ -10,7 +10,7 @@ const camera_chase_tilt_vert_damp_right = 2 # Can't be zero
 const camera_inertial_movement_threshold_low = 1e-3
 # Higher values - more responsive camera.
 const camera_tilt_velocity_factor = 1
-const camera_push_velocity_factor = 5.0 # Small ship - 2.5
+const camera_push_velocity_factor = 2.0 # Small ship - 2.5
 const camera_push_max_factor = 1700.0 # Small ship - 1000
 const camera_push_velocity_power = 3.0
 const camera_push_visibility_velocity = 1e8

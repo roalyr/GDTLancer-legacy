@@ -5,7 +5,7 @@ render_mode
 
 	// Blending and culling.
 	blend_add,
-	cull_disabled,
+	cull_front,
 
 	unshaded,
 	//diffuse_lambert,
@@ -23,10 +23,15 @@ uniform float corona_floor_power = 5.0;
 uniform float corona_floor : hint_range(0.0, 1e2, 5e-4) = 1.5;
 
 uniform sampler2D displacement_texture;
-uniform float displacement_power : hint_range(-0.2, 0.2, 5e-4) = 0.1;
+uniform float displacement_power : hint_range(-0.4, 0.4, 5e-4) = 0.1;
 uniform float displacement_scale_xz : hint_range(0.0, 2.0, 5e-4) = 1.0;
 uniform float displacement_scale_y : hint_range(0.0, 2.0, 5e-4) = 1.0;
 uniform float displacement_velocity : hint_range(0.0, 2.0, 5e-4) = 0.5;
+
+// Fade start and end distances
+uniform float fade_start = 0;
+uniform float fade_end = 1e6;
+uniform float fade_power = 1.0;
 
 varying float noise_val;
 
@@ -52,6 +57,13 @@ void fragment()
 {
 	float dt = clamp(abs(dot(NORMAL,VIEW)), 1e-6, 1.0);
 	float corona = clamp(pow(dt, exp(exponent_corona))*strength_corona, 1e-6, 1.0);
+	
+	// Calculate the distance from the camera to the current fragment
+    float distance_vert = length(VERTEX);
+
+    // Calculate fade factor based on distance
+    float fade_factor = pow(clamp((fade_end - distance_vert) / (fade_end - fade_start), 0.0, 1.0), fade_power);
+	ALPHA = fade_factor;
 	
 	ALBEDO =  pow(corona, exponent_corona_rim)*corona_color.rgb;
 	ALBEDO *= corona_floor - pow(noise_val, corona_floor_power);

@@ -1,29 +1,33 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Shaders/Solid/Solid_dither_alpha_0x0.gdshader" type="Shader" id=1]
+[ext_resource path="res://Assets/Textures/Noise/Normal/Vein 1 - 512x512_normal_light.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/Noise/Normal/Turbulent 2 - 512x512_normal_light.png" type="Texture" id=3]
 
 [resource]
 render_priority = -1
 shader = ExtResource( 1 )
-shader_param/albedo = Color( 0.564706, 0.454902, 0.454902, 1 )
+shader_param/albedo = Color( 0.341176, 0.32549, 0.32549, 1 )
 shader_param/emission = Color( 0, 0, 0, 1 )
-shader_param/specular = 0.0
-shader_param/metallic = -0.5
-shader_param/roughness = 0.8
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 0.845
 shader_param/smr_multiplier = 1.0
 shader_param/fade_start = 20000.0
 shader_param/fade_end = 40000.0
 shader_param/fade_power = 2.0
 shader_param/alpha_threshold = 0.0
 shader_param/highlight_end = 1000.0
-shader_param/highlight_power = 2.0
+shader_param/highlight_power = 3.0
 shader_param/highlight_strength = 0.5
 shader_param/detail_blend_factor = 0.5
-shader_param/normal_scale = 0.0
-shader_param/normal_blend_factor = 0.5
+shader_param/normal_scale = -2.427
+shader_param/normal_blend_factor = 0.569
 shader_param/uv1_blend_sharpness = 10.0
 shader_param/uv1_scale = Vector3( 0.5, 0.5, 0.5 )
 shader_param/uv1_offset = Vector3( 0, 0, 0 )
 shader_param/uv2_blend_sharpness = 10.0
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/texture_normal_1 = ExtResource( 2 )
+shader_param/texture_normal_2 = ExtResource( 3 )

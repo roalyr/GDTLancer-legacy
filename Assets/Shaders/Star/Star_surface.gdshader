@@ -5,7 +5,7 @@ render_mode
 	//use_debanding,
 
 	// Blending and culling.
-	blend_mix,
+	blend_add,
 	cull_back,
 
 	unshaded,
@@ -38,6 +38,11 @@ uniform float rim_strength = 1.0;
 uniform float rim_exponent = 0.5;
 uniform float rim_intensity = 0.3;
 
+// Fade start and end distances
+uniform float fade_start = 0;
+uniform float fade_end = 1e6;
+uniform float fade_power = 1.0;
+
 const float pi = 3.1415926535;
 const vec3 WHITE = vec3(1.0,1.0,1.0);
 
@@ -56,5 +61,12 @@ void fragment()
 	ALBEDO *= surface_color.rgb ;
 	ALBEDO += fade_color.rgb * distance_factor;
 	ALBEDO += (1.0-rim) * rim_color.rgb * rim_intensity * (1.0 - distance_factor);
+
+	// Calculate the distance from the camera to the current fragment
+    float distance_vert = length(VERTEX);
+
+    // Calculate fade factor based on distance
+    float fade_factor = pow(clamp((fade_end - distance_vert) / (fade_end - fade_start), 0.0, 1.0), fade_power);
+	ALPHA = fade_factor;
 
 }

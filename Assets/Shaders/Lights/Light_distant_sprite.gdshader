@@ -28,6 +28,12 @@ uniform float phase : hint_range(0.0, 3.14, 5e-4) = 0.0;
 uniform float distance_fade_max = 1e3;
 
 
+// Fade start and end distances
+uniform float fade_start = 0;
+uniform float fade_end = 1e6;
+uniform float fade_power = 1.0;
+
+
 void vertex() {
 	float abs_scale = length(vec3(WORLD_MATRIX[0][0],WORLD_MATRIX[1][1],WORLD_MATRIX[2][2]));
 	float z_dist = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).z / abs_scale;
@@ -57,4 +63,8 @@ void fragment() {
 	* pulse;
 	
 	ALBEDO *= clamp(smoothstep(0.0, distance_fade_max, length(VERTEX)), 1e-6, 1.0);
+	   
+	float distance_vert = length(VERTEX);
+	float fade_factor = pow(clamp((fade_end - distance_vert) / (fade_end - fade_start), 0.0, 1.0), fade_power);
+	ALPHA = fade_factor;
 }
