@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Melt 12 - 512x512.png-ad039088ff11b4a6b241edb5a6640893.s3tc.stex"
-path.etc="res://.import/Melt 12 - 512x512.png-ad039088ff11b4a6b241edb5a6640893.etc.stex"
+path="res://.import/Melt 12 - 512x512.png-ad039088ff11b4a6b241edb5a6640893.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Melt/Melt 12 - 512x512.png"
-dest_files=[ "res://.import/Melt 12 - 512x512.png-ad039088ff11b4a6b241edb5a6640893.s3tc.stex", "res://.import/Melt 12 - 512x512.png-ad039088ff11b4a6b241edb5a6640893.etc.stex" ]
+dest_files=[ "res://.import/Melt 12 - 512x512.png-ad039088ff11b4a6b241edb5a6640893.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

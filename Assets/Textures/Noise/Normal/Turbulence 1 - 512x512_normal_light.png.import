@@ -2,25 +2,23 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Turbulence 1 - 512x512_normal_light.png-9fa8efe2666f94a0c340687714c73496.s3tc.stex"
-path.etc="res://.import/Turbulence 1 - 512x512_normal_light.png-9fa8efe2666f94a0c340687714c73496.etc.stex"
+path="res://.import/Turbulence 1 - 512x512_normal_light.png-9fa8efe2666f94a0c340687714c73496.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Noise/Normal/Turbulence 1 - 512x512_normal_light.png"
-dest_files=[ "res://.import/Turbulence 1 - 512x512_normal_light.png-9fa8efe2666f94a0c340687714c73496.s3tc.stex", "res://.import/Turbulence 1 - 512x512_normal_light.png-9fa8efe2666f94a0c340687714c73496.etc.stex" ]
+dest_files=[ "res://.import/Turbulence 1 - 512x512_normal_light.png-9fa8efe2666f94a0c340687714c73496.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
+compress/normal_map=0
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

@@ -2,25 +2,23 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Milky 6 - 512x512_normal_light.png-04b16b442bcca26903eb1af47785d530.s3tc.stex"
-path.etc="res://.import/Milky 6 - 512x512_normal_light.png-04b16b442bcca26903eb1af47785d530.etc.stex"
+path="res://.import/Milky 6 - 512x512_normal_light.png-04b16b442bcca26903eb1af47785d530.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Noise/Normal/Milky 6 - 512x512_normal_light.png"
-dest_files=[ "res://.import/Milky 6 - 512x512_normal_light.png-04b16b442bcca26903eb1af47785d530.s3tc.stex", "res://.import/Milky 6 - 512x512_normal_light.png-04b16b442bcca26903eb1af47785d530.etc.stex" ]
+dest_files=[ "res://.import/Milky 6 - 512x512_normal_light.png-04b16b442bcca26903eb1af47785d530.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
+compress/normal_map=0
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Milky 7 - 512x512.png-5964c216a38cdbd8ef5ffb648346e6be.s3tc.stex"
-path.etc="res://.import/Milky 7 - 512x512.png-5964c216a38cdbd8ef5ffb648346e6be.etc.stex"
+path="res://.import/Milky 7 - 512x512.png-5964c216a38cdbd8ef5ffb648346e6be.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Milky/Milky 7 - 512x512.png"
-dest_files=[ "res://.import/Milky 7 - 512x512.png-5964c216a38cdbd8ef5ffb648346e6be.s3tc.stex", "res://.import/Milky 7 - 512x512.png-5964c216a38cdbd8ef5ffb648346e6be.etc.stex" ]
+dest_files=[ "res://.import/Milky 7 - 512x512.png-5964c216a38cdbd8ef5ffb648346e6be.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Environment/Global_space.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Environment/Environment.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Viewport/Viewport3D.gd" type="Script" id=8]
 
 [node name="ViewportContainer3D" type="ViewportContainer"]
@@ -20,10 +19,9 @@ shadow_atlas_quad_2 = 0
 shadow_atlas_quad_3 = 0
 script = ExtResource( 8 )
 
-[node name="Environment" parent="Viewport3D" instance=ExtResource( 7 )]
-
 [node name="Global_space" parent="Viewport3D" instance=ExtResource( 6 )]
 
 [node name="Player" parent="Viewport3D" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 91457.8, 0 )
 
 [connection signal="size_changed" from="Viewport3D" to="Viewport3D" method="_on_Viewport3D_size_changed"]

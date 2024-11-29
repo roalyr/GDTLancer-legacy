@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Vein 14 - 512x512.png-5ec38a8a10499ccc390d94b02c50872b.s3tc.stex"
-path.etc="res://.import/Vein 14 - 512x512.png-5ec38a8a10499ccc390d94b02c50872b.etc.stex"
+path="res://.import/Vein 14 - 512x512.png-5ec38a8a10499ccc390d94b02c50872b.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Vein/Vein 14 - 512x512.png"
-dest_files=[ "res://.import/Vein 14 - 512x512.png-5ec38a8a10499ccc390d94b02c50872b.s3tc.stex", "res://.import/Vein 14 - 512x512.png-5ec38a8a10499ccc390d94b02c50872b.etc.stex" ]
+dest_files=[ "res://.import/Vein 14 - 512x512.png-5ec38a8a10499ccc390d94b02c50872b.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

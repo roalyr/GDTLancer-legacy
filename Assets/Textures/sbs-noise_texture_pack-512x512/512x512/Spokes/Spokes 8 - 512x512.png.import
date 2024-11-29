@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Spokes 8 - 512x512.png-ca7c27b9025f68c2633785a41841fb95.s3tc.stex"
-path.etc="res://.import/Spokes 8 - 512x512.png-ca7c27b9025f68c2633785a41841fb95.etc.stex"
+path="res://.import/Spokes 8 - 512x512.png-ca7c27b9025f68c2633785a41841fb95.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Spokes/Spokes 8 - 512x512.png"
-dest_files=[ "res://.import/Spokes 8 - 512x512.png-ca7c27b9025f68c2633785a41841fb95.s3tc.stex", "res://.import/Spokes 8 - 512x512.png-ca7c27b9025f68c2633785a41841fb95.etc.stex" ]
+dest_files=[ "res://.import/Spokes 8 - 512x512.png-ca7c27b9025f68c2633785a41841fb95.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

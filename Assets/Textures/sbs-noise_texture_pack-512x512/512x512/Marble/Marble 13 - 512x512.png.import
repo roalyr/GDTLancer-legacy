@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Marble 13 - 512x512.png-b78e3cb522bd3492838e66c21b22a3c8.s3tc.stex"
-path.etc="res://.import/Marble 13 - 512x512.png-b78e3cb522bd3492838e66c21b22a3c8.etc.stex"
+path="res://.import/Marble 13 - 512x512.png-b78e3cb522bd3492838e66c21b22a3c8.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Marble/Marble 13 - 512x512.png"
-dest_files=[ "res://.import/Marble 13 - 512x512.png-b78e3cb522bd3492838e66c21b22a3c8.s3tc.stex", "res://.import/Marble 13 - 512x512.png-b78e3cb522bd3492838e66c21b22a3c8.etc.stex" ]
+dest_files=[ "res://.import/Marble 13 - 512x512.png-b78e3cb522bd3492838e66c21b22a3c8.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

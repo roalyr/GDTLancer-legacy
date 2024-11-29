@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Perlin 10 - 512x512.png-f9acd0ad1bc44ad75c617064664eff3d.s3tc.stex"
-path.etc="res://.import/Perlin 10 - 512x512.png-f9acd0ad1bc44ad75c617064664eff3d.etc.stex"
+path="res://.import/Perlin 10 - 512x512.png-f9acd0ad1bc44ad75c617064664eff3d.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Perlin/Perlin 10 - 512x512.png"
-dest_files=[ "res://.import/Perlin 10 - 512x512.png-f9acd0ad1bc44ad75c617064664eff3d.s3tc.stex", "res://.import/Perlin 10 - 512x512.png-f9acd0ad1bc44ad75c617064664eff3d.etc.stex" ]
+dest_files=[ "res://.import/Perlin 10 - 512x512.png-f9acd0ad1bc44ad75c617064664eff3d.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

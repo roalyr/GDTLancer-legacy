@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Voronoi 14 - 512x512.png-82fc4619b99b9154be5769377549b74f.s3tc.stex"
-path.etc="res://.import/Voronoi 14 - 512x512.png-82fc4619b99b9154be5769377549b74f.etc.stex"
+path="res://.import/Voronoi 14 - 512x512.png-82fc4619b99b9154be5769377549b74f.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Voronoi/Voronoi 14 - 512x512.png"
-dest_files=[ "res://.import/Voronoi 14 - 512x512.png-82fc4619b99b9154be5769377549b74f.s3tc.stex", "res://.import/Voronoi 14 - 512x512.png-82fc4619b99b9154be5769377549b74f.etc.stex" ]
+dest_files=[ "res://.import/Voronoi 14 - 512x512.png-82fc4619b99b9154be5769377549b74f.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Swirl 6 - 512x512.png-012b1f6281924ea7a3818d8cec3ccc13.s3tc.stex"
-path.etc="res://.import/Swirl 6 - 512x512.png-012b1f6281924ea7a3818d8cec3ccc13.etc.stex"
+path="res://.import/Swirl 6 - 512x512.png-012b1f6281924ea7a3818d8cec3ccc13.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Swirl/Swirl 6 - 512x512.png"
-dest_files=[ "res://.import/Swirl 6 - 512x512.png-012b1f6281924ea7a3818d8cec3ccc13.s3tc.stex", "res://.import/Swirl 6 - 512x512.png-012b1f6281924ea7a3818d8cec3ccc13.etc.stex" ]
+dest_files=[ "res://.import/Swirl 6 - 512x512.png-012b1f6281924ea7a3818d8cec3ccc13.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

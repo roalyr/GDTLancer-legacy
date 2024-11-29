@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Turbulence 8 - 512x512.png-c8e722a8c9ff59116f3f33b0ab3c202a.s3tc.stex"
-path.etc="res://.import/Turbulence 8 - 512x512.png-c8e722a8c9ff59116f3f33b0ab3c202a.etc.stex"
+path="res://.import/Turbulence 8 - 512x512.png-c8e722a8c9ff59116f3f33b0ab3c202a.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Turbulence/Turbulence 8 - 512x512.png"
-dest_files=[ "res://.import/Turbulence 8 - 512x512.png-c8e722a8c9ff59116f3f33b0ab3c202a.s3tc.stex", "res://.import/Turbulence 8 - 512x512.png-c8e722a8c9ff59116f3f33b0ab3c202a.etc.stex" ]
+dest_files=[ "res://.import/Turbulence 8 - 512x512.png-c8e722a8c9ff59116f3f33b0ab3c202a.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

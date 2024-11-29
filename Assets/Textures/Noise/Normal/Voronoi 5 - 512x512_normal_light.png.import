@@ -2,25 +2,23 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Voronoi 5 - 512x512_normal_light.png-e6f9cbd948d12c94964a5eaeeeeb9a0c.s3tc.stex"
-path.etc="res://.import/Voronoi 5 - 512x512_normal_light.png-e6f9cbd948d12c94964a5eaeeeeb9a0c.etc.stex"
+path="res://.import/Voronoi 5 - 512x512_normal_light.png-e6f9cbd948d12c94964a5eaeeeeb9a0c.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Noise/Normal/Voronoi 5 - 512x512_normal_light.png"
-dest_files=[ "res://.import/Voronoi 5 - 512x512_normal_light.png-e6f9cbd948d12c94964a5eaeeeeb9a0c.s3tc.stex", "res://.import/Voronoi 5 - 512x512_normal_light.png-e6f9cbd948d12c94964a5eaeeeeb9a0c.etc.stex" ]
+dest_files=[ "res://.import/Voronoi 5 - 512x512_normal_light.png-e6f9cbd948d12c94964a5eaeeeeb9a0c.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
+compress/normal_map=0
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

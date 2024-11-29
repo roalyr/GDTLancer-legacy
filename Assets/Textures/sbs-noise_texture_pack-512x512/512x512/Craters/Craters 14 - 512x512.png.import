@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Craters 14 - 512x512.png-4e5c67ed25db8cb7b2de145619d230b0.s3tc.stex"
-path.etc="res://.import/Craters 14 - 512x512.png-4e5c67ed25db8cb7b2de145619d230b0.etc.stex"
+path="res://.import/Craters 14 - 512x512.png-4e5c67ed25db8cb7b2de145619d230b0.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Craters/Craters 14 - 512x512.png"
-dest_files=[ "res://.import/Craters 14 - 512x512.png-4e5c67ed25db8cb7b2de145619d230b0.s3tc.stex", "res://.import/Craters 14 - 512x512.png-4e5c67ed25db8cb7b2de145619d230b0.etc.stex" ]
+dest_files=[ "res://.import/Craters 14 - 512x512.png-4e5c67ed25db8cb7b2de145619d230b0.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

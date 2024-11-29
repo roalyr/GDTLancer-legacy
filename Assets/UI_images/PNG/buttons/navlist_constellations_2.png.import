@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.s3tc.stex"
-path.etc="res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.etc.stex"
+path="res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/UI_images/PNG/buttons/navlist_constellations_2.png"
-dest_files=[ "res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.s3tc.stex", "res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.etc.stex" ]
+dest_files=[ "res://.import/navlist_constellations_2.png-4588a397f486cc896a3c82aada645735.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

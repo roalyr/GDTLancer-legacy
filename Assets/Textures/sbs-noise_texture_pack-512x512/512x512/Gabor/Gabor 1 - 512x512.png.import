@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Gabor 1 - 512x512.png-28893081bc4f4a7b69620ccf8e5aa991.s3tc.stex"
-path.etc="res://.import/Gabor 1 - 512x512.png-28893081bc4f4a7b69620ccf8e5aa991.etc.stex"
+path="res://.import/Gabor 1 - 512x512.png-28893081bc4f4a7b69620ccf8e5aa991.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Gabor/Gabor 1 - 512x512.png"
-dest_files=[ "res://.import/Gabor 1 - 512x512.png-28893081bc4f4a7b69620ccf8e5aa991.s3tc.stex", "res://.import/Gabor 1 - 512x512.png-28893081bc4f4a7b69620ccf8e5aa991.etc.stex" ]
+dest_files=[ "res://.import/Gabor 1 - 512x512.png-28893081bc4f4a7b69620ccf8e5aa991.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

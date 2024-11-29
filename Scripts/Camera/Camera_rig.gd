@@ -149,9 +149,7 @@ func camera_common_behavior():
 		pow(get_physics_process_delta_time() * camera_push_velocity_factor, camera_push_velocity_power))
 	var tmp_fov = init_fov.linear_interpolate(fin_fov, 
 		get_physics_process_delta_time() * camera_fov_velocity_factor)
-	var tmp_brightness = init_brightness.linear_interpolate(fin_brightness, 
-		get_physics_process_delta_time() * camera_brightness_velocity_factor)
-	# Needed to prevent artifacts.
+
 	
 	# Prevent camera from sliding forward.
 	tmp_push.x = camera_min_zoom + tmp_push.x
@@ -177,12 +175,6 @@ func camera_common_behavior():
 	# This simulates warp effect and hides Paths.player model.
 	$GameCamera.fov = Constants.camera_fov \
 		+ clamp(camera_fov_derivative*log(tmp_fov.x), 1e-6, camera_fov_max_delta)
-	
-	# Brightness adjustment for velocity.
-	Paths.environment.warp_brightness_variation = clamp(
-		camera_brightness_derivative*log(tmp_brightness.x), 
-		1e-6, 
-		camera_brightness_max_delta)
 	
 
 

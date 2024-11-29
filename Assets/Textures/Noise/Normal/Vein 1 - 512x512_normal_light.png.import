@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Vein 1 - 512x512_normal_light.png-b5b1dc07bf639f50ce2d2b20a54b2525.s3tc.stex"
-path.etc="res://.import/Vein 1 - 512x512_normal_light.png-b5b1dc07bf639f50ce2d2b20a54b2525.etc.stex"
+path="res://.import/Vein 1 - 512x512_normal_light.png-b5b1dc07bf639f50ce2d2b20a54b2525.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Noise/Normal/Vein 1 - 512x512_normal_light.png"
-dest_files=[ "res://.import/Vein 1 - 512x512_normal_light.png-b5b1dc07bf639f50ce2d2b20a54b2525.s3tc.stex", "res://.import/Vein 1 - 512x512_normal_light.png-b5b1dc07bf639f50ce2d2b20a54b2525.etc.stex" ]
+dest_files=[ "res://.import/Vein 1 - 512x512_normal_light.png-b5b1dc07bf639f50ce2d2b20a54b2525.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

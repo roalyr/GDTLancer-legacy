@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Manifold 6 - 512x512.png-59eb364b843e6d9ab814594586250de1.s3tc.stex"
-path.etc="res://.import/Manifold 6 - 512x512.png-59eb364b843e6d9ab814594586250de1.etc.stex"
+path="res://.import/Manifold 6 - 512x512.png-59eb364b843e6d9ab814594586250de1.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Manifold/Manifold 6 - 512x512.png"
-dest_files=[ "res://.import/Manifold 6 - 512x512.png-59eb364b843e6d9ab814594586250de1.s3tc.stex", "res://.import/Manifold 6 - 512x512.png-59eb364b843e6d9ab814594586250de1.etc.stex" ]
+dest_files=[ "res://.import/Manifold 6 - 512x512.png-59eb364b843e6d9ab814594586250de1.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

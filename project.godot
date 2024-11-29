@@ -180,25 +180,10 @@ touch=false
 [importer_defaults]
 
 texture={
-"compress/bptc_ldr": 0,
-"compress/hdr_mode": 0,
-"compress/lossy_quality": 0.7,
-"compress/mode": 2,
-"compress/normal_map": 0,
 "detect_3d": false,
-"flags/anisotropic": false,
-"flags/filter": true,
 "flags/mipmaps": true,
 "flags/repeat": 1,
-"flags/srgb": 2,
-"process/HDR_as_SRGB": false,
-"process/fix_alpha_border": false,
-"process/invert_color": false,
-"process/normal_map_invert_y": false,
-"process/premult_alpha": false,
-"size_limit": 0,
-"stream": false,
-"svg/scale": 1.0
+"process/fix_alpha_border": false
 }
 
 [input_devices]
@@ -224,6 +209,7 @@ common/physics_fps=120
 quality/driver/driver_name="GLES2"
 quality/driver/fallback_to_gles2=true
 quality/intended_usage/framebuffer_allocation.mobile=2
+vram_compression/import_s3tc=false
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 misc/lossless_compression/force_png=true
@@ -243,4 +229,3 @@ gles3/shaders/max_simultaneous_compiles=1
 gles3/shaders/shader_cache_size_mb=128
 quality/lightmapping/use_bicubic_sampling=false
 quality/depth/hdr=false
-environment/default_environment="res://Assets/Environment/Environment.tres"

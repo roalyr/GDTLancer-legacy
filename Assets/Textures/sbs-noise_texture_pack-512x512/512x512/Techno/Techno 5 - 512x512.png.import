@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Techno 5 - 512x512.png-c27694f3f5473d1e6692d2097de5beae.s3tc.stex"
-path.etc="res://.import/Techno 5 - 512x512.png-c27694f3f5473d1e6692d2097de5beae.etc.stex"
+path="res://.import/Techno 5 - 512x512.png-c27694f3f5473d1e6692d2097de5beae.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Techno/Techno 5 - 512x512.png"
-dest_files=[ "res://.import/Techno 5 - 512x512.png-c27694f3f5473d1e6692d2097de5beae.s3tc.stex", "res://.import/Techno 5 - 512x512.png-c27694f3f5473d1e6692d2097de5beae.etc.stex" ]
+dest_files=[ "res://.import/Techno 5 - 512x512.png-c27694f3f5473d1e6692d2097de5beae.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

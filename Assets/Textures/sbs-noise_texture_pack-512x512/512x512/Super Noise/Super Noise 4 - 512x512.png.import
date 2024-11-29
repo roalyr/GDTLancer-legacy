@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Super Noise 4 - 512x512.png-fcb14054774d0588abc5fb51eb671ea1.s3tc.stex"
-path.etc="res://.import/Super Noise 4 - 512x512.png-fcb14054774d0588abc5fb51eb671ea1.etc.stex"
+path="res://.import/Super Noise 4 - 512x512.png-fcb14054774d0588abc5fb51eb671ea1.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Super Noise/Super Noise 4 - 512x512.png"
-dest_files=[ "res://.import/Super Noise 4 - 512x512.png-fcb14054774d0588abc5fb51eb671ea1.s3tc.stex", "res://.import/Super Noise 4 - 512x512.png-fcb14054774d0588abc5fb51eb671ea1.etc.stex" ]
+dest_files=[ "res://.import/Super Noise 4 - 512x512.png-fcb14054774d0588abc5fb51eb671ea1.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
