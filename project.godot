@@ -229,3 +229,4 @@ gles3/shaders/max_simultaneous_compiles=1
 gles3/shaders/shader_cache_size_mb=128
 quality/lightmapping/use_bicubic_sampling=false
 quality/depth/hdr=false
+environment/default_environment="res://Assets/Environments/Environment_default.tres"

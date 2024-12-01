@@ -22,6 +22,6 @@ script = ExtResource( 8 )
 [node name="Global_space" parent="Viewport3D" instance=ExtResource( 6 )]
 
 [node name="Player" parent="Viewport3D" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 91457.8, 0 )
+transform = Transform( 0.627623, 0, -0.778517, 0, 1, 0, 0.778517, 0, 0.627623, -57532.5, 96769, 14812.5 )
 
 [connection signal="size_changed" from="Viewport3D" to="Viewport3D" method="_on_Viewport3D_size_changed"]

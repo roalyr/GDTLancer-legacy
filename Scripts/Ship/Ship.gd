@@ -3,17 +3,17 @@ extends RigidBody
 onready var ui = get_node("/root/Main/UI")
 
 
-# rate of change of acceleration.
-const accel_damp_factor = 0.3
+# Changes the rate of thrust increment
+const accel_damp_factor = 0.5
 
 var velocity_limiter_state = 0
-const velocity_limmiter_1 = 1e2
-const velocity_limmiter_2 = 1e5
-const velocity_limmiter_3 = 1e10
-const velocity_limmiter_4 = 1e17
+const velocity_limmiter_1 = 1e1
+const velocity_limmiter_2 = 1e2
+const velocity_limmiter_3 = 1e3
+const velocity_limmiter_4 = 1e4
 
 
-const accel_max = 1e23
+const accel_max = 10
 
 const engine_delay_time_base = 0.05
 # const engine_delay_lag_factor = 1
@@ -37,10 +37,10 @@ var autopilot_orbiting_factor = 0.0
 # Vars.
 # Ship data to be loaded,
 var ship_mass = 0
-var idle_engine_ticks = 0
+#var idle_engine_ticks = 0
+var engine_thrust = 0
 var torque_factor = Vector3(0,0,0)
 var autopilot_torque_factor = 0
-var engine_thrust = 0
 var camera_vert_offset = 0.0
 var camera_horiz_offset = 0.0
 var exhaust_shape_size_xy_max = 0
@@ -86,6 +86,19 @@ func _ready():
 	# First initialize the camera "ship".
 	init_specific_ship(player_camera_ship.instance())
 	init_specific_ship(ship_phoenix_heavy.instance())
+
+
+
+func _physics_process(delta):
+	
+
+	if engine_delay_timer <= engine_delay_time:
+		engine_delay_timer += delta
+	else:
+		engine_delay_timer = 0.0
+		engine_delay = false
+
+		
 	
 
 
@@ -95,7 +108,16 @@ func _integrate_forces(state):
 	var vel = state.linear_velocity.length()
 	PlayerState.ship_linear_velocity = vel
 	
-	state.add_central_force(-global_transform.basis.z * PlayerState.acceleration)
+	state.add_central_force(-global_transform.basis.z * PlayerState.thrust)
+	
+	# Limiting by engine ticks. It is a hard rebase_limits.
+	# TODO: move capped velocity to constants.
+	if vel > 3e6 and self.continuous_cd:
+		self.continuous_cd = false
+		GameState.debug("disable ship CCD due to high velocity")
+	elif vel <= 3e6 and not self.continuous_cd:
+		self.continuous_cd = true
+		GameState.debug("enable ship CCD")
 
 
 	# AUTOPILOT
@@ -206,10 +228,10 @@ func init_specific_ship(ship_ref):
 	# Load ship data.
 	current_ship = ship_ref.duplicate()
 	ship_mass = current_ship.get_node("Ship_data").ship_mass
-	idle_engine_ticks = current_ship.get_node("Ship_data").idle_engine_ticks
+	#idle_engine_ticks = current_ship.get_node("Ship_data").idle_engine_ticks
+	engine_thrust = current_ship.get_node("Ship_data").engine_thrust
 	torque_factor = current_ship.get_node("Ship_data").torque_factor
 	autopilot_torque_factor = current_ship.get_node("Ship_data").autopilot_torque_factor
-	engine_thrust = current_ship.get_node("Ship_data").engine_thrust
 	camera_vert_offset = current_ship.get_node("Ship_data").camera_vert_offset
 	camera_horiz_offset = current_ship.get_node("Ship_data").camera_horiz_offset
 	exhaust_shape_size_xy_max = current_ship.get_node("Ship_data").exhaust_shape_size_xy_max
@@ -244,49 +266,57 @@ func init_ship():
 	self.custom_integrator = true
 	self.can_sleep = false
 	self.mass = self.ship_mass
-	PlayerState.acceleration = 0
-	PlayerState.accel_ticks = idle_engine_ticks
+	PlayerState.thrust = 0
+	PlayerState.accel_ticks = 0
 	adjust_exhaust()
 
 
 func adjust_exhaust():
 	
-	var accel_val = 20
+	var accel_val = PlayerState.accel_ticks
+	if accel_val > 10:
+		accel_val = 10
 	var engines = current_ship.get_node("Engines")
 	for i in engines.get_children():
 
 		# Adjust light intensity
-		if PlayerState.acceleration > 0:
-			i.get_node("Engine_exhaust_shapes").show()
+		if PlayerState.accel_ticks > 0:
 			i.get_node("Engine_exhaust_shapes").scale.z = accel_val
-			i.get_node("Engine_exhaust_shapes").scale.x = accel_val*1e-1
-			i.get_node("Engine_exhaust_shapes").scale.y = accel_val*1e-1
-			if i.get_node("Engine_exhaust_shapes").scale.x >= exhaust_shape_size_xy_max:
-				i.get_node("Engine_exhaust_shapes").scale.x = exhaust_shape_size_xy_max
-				i.get_node("Engine_exhaust_shapes").scale.y = exhaust_shape_size_xy_max
 		else:
-			i.get_node("Engine_exhaust_shapes").hide()
-
+			i.get_node("Engine_exhaust_shapes").scale.z = 0
+			
 			
 
 func is_accelerating(accelerating):
 
-	if accelerating:
+	if PlayerState.thrust < engine_thrust:
+		if accelerating and not engine_delay:
 			
-		PlayerState.acceleration = engine_thrust
+			PlayerState.accel_ticks += tick_step
+			engine_delay = true
 			
 	
-	else:
+	# Deceleration.
+	if not accelerating and (PlayerState.accel_ticks > 0) and not engine_delay:
 		
-		PlayerState.acceleration = 0
+		PlayerState.accel_ticks -= tick_step
+		engine_delay = true
+
+		
+		if PlayerState.accel_ticks < 0:
+			PlayerState.accel_ticks = 0
+
+	# Adjust acceleration factor.
+	var thrust_ratio = float(PlayerState.accel_ticks) / float(accel_max)
+	PlayerState.thrust = pow(thrust_ratio, accel_damp_factor) * engine_thrust
 	
 	# Adjust visuals.
 	adjust_exhaust()
 
 
 func is_engine_kill():
-	PlayerState.acceleration = 0
-	PlayerState.accel_ticks = idle_engine_ticks
+	PlayerState.thrust = 0
+	PlayerState.accel_ticks = 0
 	adjust_exhaust()
 		
 func is_target_autopilot_locked(target):
@@ -296,7 +326,7 @@ func is_target_autopilot_locked(target):
 func is_autopilot_start():
 	PlayerState.autopilot = true
 	# Slightly randomize spinning when on autopilot.
-	autopilot_orbiting_factor *= sign(rand_range(-1,1))
+	# autopilot_orbiting_factor *= sign(rand_range(-1,1))
 
 func is_autopilot_disable():
 	is_engine_kill()
