@@ -2,28 +2,30 @@
 
 [ext_resource path="res://Assets/Shaders/Solid/Solid_dither_alpha_8x8.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Grainy/Grainy 1 - 512x512.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Grainy/Grainy 4 - 512x512.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Textures/sbs-noise_texture_pack-512x512/512x512/Craters/Craters 2 - 512x512.png" type="Texture" id=3]
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/albedo = Color( 0.858824, 0.858824, 0.858824, 1 )
-shader_param/emission = Color( 0, 0, 0, 1 )
-shader_param/specular = 0.0
-shader_param/metallic = -0.121
-shader_param/roughness = -0.085
-shader_param/normal_strength = 0.254
-shader_param/smr_strength = -0.861
-shader_param/rim_strength = -0.189
-shader_param/rim_exponent = 1.435
-shader_param/rim_intensity = 0.114
+shader_param/albedo = Color( 0, 0.807843, 0.788235, 1 )
+shader_param/emission = Color( 0.619608, 0.54902, 0.219608, 1 )
+shader_param/specular = 1.282
+shader_param/metallic = -0.048
+shader_param/roughness = 0.286
+shader_param/normal_strength = 0.132
+shader_param/albedo_detail_strength = -0.438
+shader_param/albedo_detail_power = -0.35
+shader_param/rim_strength = 1.105
+shader_param/rim_exponent = 0.935
+shader_param/rim_intensity = -3.939
+shader_param/fade_start = 100000.0
+shader_param/fade_end = 220000.0
+shader_param/fade_power = 2.0
+shader_param/dither_threshold = 0.5
+shader_param/noise_blend = 0.05
 shader_param/uv_blend_sharpness = 10.0
 shader_param/uv_scale = Vector3( 0.1, 0.048, 0.1 )
 shader_param/uv_offset = Vector3( -0.752, 0.666, -0.706 )
 shader_param/normal_scale = 0.2
-shader_param/smr_scale = 0.2
-shader_param/fade_start = 100000.0
-shader_param/fade_end = 220000.0
-shader_param/fade_power = 2.0
-shader_param/dither_threshold = 0.7
+shader_param/albedo_detail_scale = 0.193
 shader_param/texture_normal = ExtResource( 2 )
-shader_param/texture_smr = ExtResource( 3 )
+shader_param/texture_albedo = ExtResource( 3 )

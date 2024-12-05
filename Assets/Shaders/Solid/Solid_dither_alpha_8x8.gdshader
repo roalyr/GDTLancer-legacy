@@ -5,7 +5,7 @@ render_mode
     blend_mix,
     cull_back,
     diffuse_lambert,
-    specular_phong,
+    specular_disabled,
     depth_draw_opaque;
 
 // Material properties
@@ -16,13 +16,24 @@ uniform float metallic : hint_range(-5.0, 5.0) = 0.0;
 uniform float roughness : hint_range(-5.0, 5.0) = 0.5;
 
 uniform sampler2D texture_normal : hint_normal;
-uniform sampler2D texture_smr : hint_normal;
+uniform sampler2D texture_albedo : hint_normal;
 
 uniform float normal_strength = 1.0;
-uniform float smr_strength = 1.0;
+uniform float albedo_detail_strength = 0.0;
+uniform float albedo_detail_power = 1.0;
+
 uniform float rim_strength = 1.0;
 uniform float rim_exponent = 0.5;
 uniform float rim_intensity = 0.3;
+
+// Fade start and end distances
+uniform float fade_start = 4e4;
+uniform float fade_end = 12e4;
+uniform float fade_power = 2.0;
+
+// Dither threshold for the dithering effect
+uniform float dither_threshold : hint_range(0.0, 1.0) = 0.5;
+uniform float noise_blend : hint_range(0.0, 1.0) = 0.05;
 
 varying vec3 uv_triplanar_pos;
 uniform float uv_blend_sharpness : hint_range(0.0, 100.0) = 10.0;
@@ -31,18 +42,8 @@ uniform vec3 uv_scale = vec3(1.0);
 uniform vec3 uv_offset = vec3(0.0);
 
 uniform float normal_scale = 1.0;
-uniform float smr_scale = 1.0;
+uniform float albedo_detail_scale = 1.0;
 
-
-
-// Fade start and end distances
-uniform float fade_start = 4e4;
-uniform float fade_end = 12e4;
-
-uniform float fade_power = 2.0;
-
-// Dither threshold for the dithering effect
-uniform float dither_threshold : hint_range(0.0, 1.0) = 0.5;
 
 vec4 triplanar_texture(sampler2D p_sampler,vec3 p_weights,vec3 p_triplanar_pos) {
 	vec4 samp=vec4(0.0);
@@ -65,6 +66,10 @@ float bayer8x8(int x, int y) {
     bayer[56] = 63.0; bayer[57] = 31.0; bayer[58] = 55.0; bayer[59] = 23.0; bayer[60] = 61.0; bayer[61] = 29.0; bayer[62] = 53.0; bayer[63] = 21.0;
 
     return bayer[x + y * 8] / 64.0;
+}
+
+float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
 }
 
 void vertex() {
@@ -90,32 +95,35 @@ void fragment() {
     float fade_factor = pow(clamp((fade_end - distance_vert) / (fade_end - fade_start), 0.0, 1.0), fade_power);
 
     // Get Bayer matrix value based on screen position
-    int x = int(mod(FRAGCOORD.x, 7.0));
+    int x = int(mod(FRAGCOORD.x, 8.0));
     int y = int(mod(FRAGCOORD.y, 8.0));
-    float dither_value = bayer8x8(x, y) + 1e-6;
+    float bayer_value = bayer8x8(x, y) + 1e-6;
+
+	float noise_value = hash(vec2(FRAGCOORD.x * 0.01, FRAGCOORD.y * 0.01));
+	float dither_value = bayer_value + noise_value * noise_blend;
+
 
 	if (fade_factor < dither_value * dither_threshold) {
 		discard;
 	}
 	
 	float rim = clamp(pow(abs(dot(NORMAL, VIEW)), rim_exponent)*rim_strength, 0.0, 1.0);
+	vec3 normal = triplanar_texture(texture_normal,uv_power_normal,uv_triplanar_pos * normal_scale).rgb;
+	vec3 albedo_detail = triplanar_texture(texture_albedo, uv_power_normal, uv_triplanar_pos * albedo_detail_scale).rgb;
 	
-	ALBEDO = albedo.rgb;
+	float albedo_detail_val = albedo_detail_strength * pow(albedo_detail.r, albedo_detail_power);
+	
+	ALBEDO = albedo.rgb + albedo_detail_val;
 	ALBEDO += (1.0-rim) * rim_intensity;
 	
     EMISSION = emission.rgb * COLOR.rgb;
-	
-
-	
-	vec3 normal = triplanar_texture(texture_normal,uv_power_normal,uv_triplanar_pos * normal_scale).rgb;
-	vec3 smr = triplanar_texture(texture_smr,uv_power_normal,uv_triplanar_pos * smr_scale).rgb;
 	
 	NORMALMAP = normal;
 	NORMALMAP_DEPTH = normal_strength;
 	
 	// SMR
-	SPECULAR = specular + smr_strength * smr.r;
-    METALLIC = metallic + smr_strength * smr.r;
-    ROUGHNESS = roughness + smr_strength * smr.r;
+	SPECULAR = specular;
+    METALLIC = metallic;
+    ROUGHNESS = roughness;
 
 }
