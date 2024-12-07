@@ -15,10 +15,10 @@ uniform float specular : hint_range(0.0, 5.0) = 0.5;
 uniform float metallic : hint_range(-5.0, 5.0) = 0.0;
 uniform float roughness : hint_range(-5.0, 5.0) = 0.5;
 
-uniform sampler2D texture_normal : hint_normal;
-uniform sampler2D texture_albedo : hint_normal;
+uniform sampler2D texture_normal : hint_albedo;
+uniform sampler2D texture_albedo : hint_albedo;
 
-uniform float normal_strength = 1.0;
+uniform float normal_strength = 0.0;
 uniform float albedo_detail_strength = 0.0;
 uniform float albedo_detail_power = 1.0;
 
@@ -68,10 +68,6 @@ float bayer8x8(int x, int y) {
     return bayer[x + y * 8] / 64.0;
 }
 
-float hash(vec2 p) {
-    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
-}
-
 void vertex() {
 	TANGENT = vec3(0.0,0.0,-1.0) * abs(NORMAL.x);
 	TANGENT+= vec3(1.0,0.0,0.0) * abs(NORMAL.y);
@@ -99,8 +95,7 @@ void fragment() {
     int y = int(mod(FRAGCOORD.y, 8.0));
     float bayer_value = bayer8x8(x, y) + 1e-6;
 
-	float noise_value = hash(vec2(FRAGCOORD.x * 0.01, FRAGCOORD.y * 0.01));
-	float dither_value = bayer_value + noise_value * noise_blend;
+	float dither_value = bayer_value;
 
 
 	if (fade_factor < dither_value * dither_threshold) {

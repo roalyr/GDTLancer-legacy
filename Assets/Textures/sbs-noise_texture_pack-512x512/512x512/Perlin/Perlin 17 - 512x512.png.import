@@ -14,11 +14,11 @@ dest_files=[ "res://.import/Perlin 17 - 512x512.png-a404c8b5b8539b68d857741a47fa
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

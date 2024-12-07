@@ -14,11 +14,11 @@ dest_files=[ "res://.import/industrial-walls_height.png-95963d979f94e94402d482de
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

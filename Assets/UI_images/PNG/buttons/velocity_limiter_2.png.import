@@ -14,11 +14,11 @@ dest_files=[ "res://.import/velocity_limiter_2.png-e77c3be46bb7549822d32b28cdb36
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

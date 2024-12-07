@@ -14,11 +14,11 @@ dest_files=[ "res://.import/navlist_planet.png-90656b5915db7d3871e4c57aa090cb3d.
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

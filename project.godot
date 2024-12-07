@@ -180,10 +180,18 @@ touch=false
 [importer_defaults]
 
 texture={
+"compress/lossy_quality": 0.8,
+"compress/mode": 1,
+"compress/normal_map": 2,
 "detect_3d": false,
 "flags/mipmaps": true,
 "flags/repeat": 1,
 "process/fix_alpha_border": false
+}
+scene={
+"animation/import": false,
+"materials/storage": 0,
+"skins/use_named_skins": false
 }
 
 [input_devices]

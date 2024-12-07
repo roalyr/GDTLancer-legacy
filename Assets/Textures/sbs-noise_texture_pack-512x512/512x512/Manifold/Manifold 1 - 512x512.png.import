@@ -14,11 +14,11 @@ dest_files=[ "res://.import/Manifold 1 - 512x512.png-6a5a0acf572c7b38bcca62b2381
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

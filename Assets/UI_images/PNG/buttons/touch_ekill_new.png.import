@@ -14,11 +14,11 @@ dest_files=[ "res://.import/touch_ekill_new.png-433a86e5ebf8ae5ed6e44a4e2e4d23b3
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

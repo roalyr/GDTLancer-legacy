@@ -52,8 +52,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.741, 0, 32.609 )
 [node name="Phoenix_heavy" parent="Models" instance=ExtResource( 4 )]
 
 [node name="Containers" parent="Models/Phoenix_heavy" index="0"]
-material_override = ExtResource( 9 )
-material/0 = ExtResource( 7 )
+material/0 = ExtResource( 8 )
 
 [node name="Asym_details" parent="Models/Phoenix_heavy" index="1"]
 material/0 = ExtResource( 8 )

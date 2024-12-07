@@ -14,11 +14,11 @@ dest_files=[ "res://.import/Melt 2 - 512x512.png-6ec835d6c0fad20587adf7c36c870f1
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

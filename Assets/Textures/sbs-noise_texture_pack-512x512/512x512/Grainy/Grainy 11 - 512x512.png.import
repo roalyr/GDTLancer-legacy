@@ -14,11 +14,11 @@ dest_files=[ "res://.import/Grainy 11 - 512x512.png-196960df1a9e4cad1f1329ae61aa
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

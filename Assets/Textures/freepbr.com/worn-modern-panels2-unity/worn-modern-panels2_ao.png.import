@@ -14,11 +14,11 @@ dest_files=[ "res://.import/worn-modern-panels2_ao.png-3b382d6f81e01a3e461193b42
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

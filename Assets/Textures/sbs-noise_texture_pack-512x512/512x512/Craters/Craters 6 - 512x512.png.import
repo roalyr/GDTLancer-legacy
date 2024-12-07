@@ -14,11 +14,11 @@ dest_files=[ "res://.import/Craters 6 - 512x512.png-b126b04ffc66d44c0d4ff6041c02
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

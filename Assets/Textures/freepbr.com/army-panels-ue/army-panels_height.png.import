@@ -14,11 +14,11 @@ dest_files=[ "res://.import/army-panels_height.png-5553b0ec93a9f5b2f3f24c3f7577a
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true

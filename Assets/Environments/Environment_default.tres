@@ -1,12 +1,10 @@
 [gd_resource type="Environment" load_steps=3 format=2]
 
-[sub_resource type="StreamTexture" id=4]
-flags = 7
-load_path = "res://.import/Pillars_environment.exr-c773aa444e4cfda39d5bb1d3e57d1245.stex"
+[ext_resource path="res://Assets/Textures/Gradients/Pillars_environment.png" type="Texture" id=1]
 
 [sub_resource type="PanoramaSky" id=3]
 radiance_size = 3
-panorama = SubResource( 4 )
+panorama = ExtResource( 1 )
 
 [resource]
 background_mode = 2

@@ -167,7 +167,7 @@ __meta__ = {
 }
 
 [node name="Planet Rock" type="Position3D" parent="Orbital_elements"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33542.3, 41197.4, -5002.07 )
+transform = Transform( 0.744551, -0.481447, -0.462442, 0.460742, 0.871889, -0.165909, 0.483075, -0.0895386, 0.870989, -33542.3, 41197.4, -5002.07 )
 script = ExtResource( 17 )
 autopilot_range = 4000.0
 
@@ -183,7 +183,7 @@ skeleton = NodePath("../../..")
 shape = SubResource( 21 )
 
 [node name="Planet Blue" type="Position3D" parent="Orbital_elements"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9031.48, 53714.8, -42009.5 )
+transform = Transform( -0.143788, 0.442082, -0.885375, 0.816412, 0.55862, 0.14634, 0.559282, -0.701789, -0.441244, -9031.48, 53714.8, -42009.5 )
 script = ExtResource( 17 )
 autopilot_range = 20000.0
 

@@ -14,11 +14,11 @@ dest_files=[ "res://.import/Super Noise 8 - 512x512.png-da46a599535e22a10e059cf3
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
+compress/normal_map=2
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true
