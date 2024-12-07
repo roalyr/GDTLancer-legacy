@@ -5,22 +5,22 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/albedo = Color( 0.258824, 0.2, 0.2, 1 )
-shader_param/emission = Color( 0.0117647, 0.0980392, 0.101961, 1 )
-shader_param/specular = 1.066
-shader_param/metallic = -0.64
-shader_param/roughness = 0.304
-shader_param/normal_strength = 0.137
-shader_param/albedo_detail_strength = -0.688
-shader_param/albedo_detail_power = -0.11
-shader_param/rim_strength = 0.891
+shader_param/albedo = Color( 0, 0.34902, 0.952941, 1 )
+shader_param/emission = Color( 0, 0, 0, 1 )
+shader_param/specular = 0.0
+shader_param/metallic = 0.149
+shader_param/roughness = 0.68
+shader_param/normal_strength = -0.215
+shader_param/albedo_detail_strength = 0.311
+shader_param/albedo_detail_power = 1.223
+shader_param/rim_strength = 1.0
 shader_param/rim_exponent = 0.5
-shader_param/rim_intensity = -0.509
-shader_param/fade_start = 40000.0
-shader_param/fade_end = 120000.0
+shader_param/rim_intensity = 1.297
+shader_param/fade_start = 30000.0
+shader_param/fade_end_mul = 5.0
 shader_param/fade_power = 2.0
 shader_param/dither_threshold = 0.5
-shader_param/noise_blend = 0.05
+shader_param/noise_blend = 0.1
 shader_param/uv_blend_sharpness = 10.0
 shader_param/uv_scale = Vector3( 1, 1, 1 )
 shader_param/uv_offset = Vector3( 0.839, -0.15, -0.513 )

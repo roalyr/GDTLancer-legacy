@@ -4,7 +4,7 @@ onready var ui = get_node("/root/Main/UI")
 
 
 # Changes the rate of thrust increment
-const accel_damp_factor = 0.5
+const accel_damp_factor = 3
 
 var velocity_limiter_state = 0
 const velocity_limmiter_1 = 1e1
@@ -228,14 +228,11 @@ func init_specific_ship(ship_ref):
 	# Load ship data.
 	current_ship = ship_ref.duplicate()
 	ship_mass = current_ship.get_node("Ship_data").ship_mass
-	#idle_engine_ticks = current_ship.get_node("Ship_data").idle_engine_ticks
 	engine_thrust = current_ship.get_node("Ship_data").engine_thrust
 	torque_factor = current_ship.get_node("Ship_data").torque_factor
 	autopilot_torque_factor = current_ship.get_node("Ship_data").autopilot_torque_factor
 	camera_vert_offset = current_ship.get_node("Ship_data").camera_vert_offset
 	camera_horiz_offset = current_ship.get_node("Ship_data").camera_horiz_offset
-	exhaust_shape_size_xy_max = current_ship.get_node("Ship_data").exhaust_shape_size_xy_max
-	autopilot_orbiting_factor = current_ship.get_node("Ship_data").autopilot_orbiting_factor
 	# Add the ship to scene.
 	self.add_child(current_ship)
 	

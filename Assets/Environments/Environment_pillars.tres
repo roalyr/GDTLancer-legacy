@@ -1,6 +1,6 @@
 [gd_resource type="Environment" load_steps=3 format=2]
 
-[ext_resource path="res://Assets/Textures/Gradients/Pillars_environment.exr" type="Texture" id=1]
+[ext_resource path="res://Assets/Textures/Gradients/Pillars_environment.png" type="Texture" id=1]
 
 [sub_resource type="PanoramaSky" id=3]
 panorama = ExtResource( 1 )
@@ -9,7 +9,7 @@ panorama = ExtResource( 1 )
 background_mode = 2
 background_sky = SubResource( 3 )
 background_color = Color( 0.360784, 0.247059, 0.556863, 1 )
-background_energy = 2.13
+background_energy = 2.0
 ambient_light_color = Color( 0.054902, 0.054902, 0.054902, 1 )
 fog_color = Color( 0.207843, 0.423529, 0.317647, 1 )
 fog_depth_begin = 0.0

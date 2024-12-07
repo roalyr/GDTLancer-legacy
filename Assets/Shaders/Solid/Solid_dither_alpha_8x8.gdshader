@@ -27,13 +27,13 @@ uniform float rim_exponent = 0.5;
 uniform float rim_intensity = 0.3;
 
 // Fade start and end distances
-uniform float fade_start = 4e4;
-uniform float fade_end = 12e4;
+uniform float fade_start = 3e4;
+uniform float fade_end_mul = 5;
 uniform float fade_power = 2.0;
 
 // Dither threshold for the dithering effect
 uniform float dither_threshold : hint_range(0.0, 1.0) = 0.5;
-uniform float noise_blend : hint_range(0.0, 1.0) = 0.05;
+uniform float noise_blend : hint_range(0.0, 1.0) = 0.1;
 
 varying vec3 uv_triplanar_pos;
 uniform float uv_blend_sharpness : hint_range(0.0, 100.0) = 10.0;
@@ -92,7 +92,7 @@ void fragment() {
     float distance_vert = length(VERTEX);
 
     // Calculate fade factor based on distance
-    float fade_factor = pow(clamp((fade_end - distance_vert) / (fade_end - fade_start), 0.0, 1.0), fade_power);
+    float fade_factor = pow(clamp((fade_end_mul*fade_start - distance_vert) / (fade_end_mul*fade_start - fade_start), 0.0, 1.0), fade_power);
 
     // Get Bayer matrix value based on screen position
     int x = int(mod(FRAGCOORD.x, 8.0));
