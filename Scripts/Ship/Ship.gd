@@ -104,24 +104,11 @@ func _physics_process(delta):
 
 func _integrate_forces(state):
 	
-	# TODO: arrange for proper signs for accel and torque.
 	var vel = state.linear_velocity.length()
 	PlayerState.ship_linear_velocity = vel
 	
 	state.add_central_force(-global_transform.basis.z * PlayerState.thrust)
-	
-	# Limiting by engine ticks. It is a hard rebase_limits.
-	# TODO: move capped velocity to constants.
-	if vel > 3e6 and self.continuous_cd:
-		self.continuous_cd = false
-		GameState.debug("disable ship CCD due to high velocity")
-	elif vel <= 3e6 and not self.continuous_cd:
-		self.continuous_cd = true
-		GameState.debug("enable ship CCD")
 
-
-	# AUTOPILOT
-	
 	# Coordinates must be within physics process because they are updating.
 	if PlayerState.autopilot_target_locked:
 		# Fail-safety
@@ -151,14 +138,31 @@ func _integrate_forces(state):
 	
 	if PlayerState.autopilot and dist_val < autopilot_range:
 		Signals.emit_signal("sig_autopilot_disable")
-		
-	
+
+	# Force to keep the player within bounds
+	var ship_position = global_transform.origin
+	var max_distance = Constants.boundary_max_distance  # Adjust this to set the boundary radius
+	var soft_margin = Constants.boundary_soft_margin  # Start applying the force this distance before the max boundary
+	var distance_to_origin = ship_position.length()
+
+	if distance_to_origin > max_distance - soft_margin:
+		# Calculate the direction to the origin
+		var direction_to_origin = -ship_position.normalized()
+
+		# Scale the force based on how far the player is from the boundary
+		var force_magnitude = (distance_to_origin - (max_distance - soft_margin)) / soft_margin
+		force_magnitude = clamp(force_magnitude, 0, 1)  # Ensure it's between 0 and 1
+
+		# Apply the force
+		var limiting_force = direction_to_origin * force_magnitude * Constants.boundary_force_strength
+		print(limiting_force)
+		state.add_central_force(limiting_force)
+
 	
 	# Steering.
 	var autopilot_factor_x = clamp(autopilot_torque_factor*steering_vector.x+autopilot_orbiting_factor, -1.0, 1.0)
 	var autopilot_factor_y = clamp(autopilot_torque_factor*steering_vector.y+autopilot_orbiting_factor, -1.0, 1.0)
 	var autopilot_factor_z = clamp(autopilot_torque_factor*steering_vector.z+autopilot_orbiting_factor, -1.0, 1.0)
-
 	
 	# Due to difference in handling LMB and stick actuation, check those separately for
 	# different game modes.
@@ -174,50 +178,31 @@ func _integrate_forces(state):
 		((not PlayerState.turret_mode and not (control_held or PlayerState.mouse_flight)) \
 		or PlayerState.turret_mode):
 
-		# Fix directions being flipped
-
 		tx = self.torque_factor.x* autopilot_factor_x
 		ty = self.torque_factor.y* autopilot_factor_y
 		tz = self.torque_factor.z* autopilot_factor_z
 
 		state.add_torque(Vector3(tx, ty, tz))
 	
-	
-	
-	
-	
 	# AUTOPILOT
-
-
-
-
-	
 	if not PlayerState.turret_mode and (control_held or PlayerState.mouse_flight):
 
 		tx = -transform.basis.y*self.torque_factor.x* GlobalInput.mouse_vector.x
 		ty = -transform.basis.x*self.torque_factor.y* GlobalInput.mouse_vector.y
 		
 		state.add_torque(tx+ty)
-	
-
-
 
 	# DAMPING
-
 	var damp_linear = 1.0 - state.step * Constants.global_linear_damp
-
 	if (damp_linear < 0):
 		damp_linear = 0
 
-
 	var damp_angular = 1.0 - state.step * Constants.global_angular_damp 
-
 	if (damp_angular < 0):
 		damp_angular = 0
 	
 	state.linear_velocity *= damp_linear
 	state.angular_velocity *= damp_angular
-
 
 
 # ================================== Other ====================================

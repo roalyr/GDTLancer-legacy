@@ -15,14 +15,14 @@ var project_name = game_name + "-"  \
 const physics_fps = 120
 const graphic_fps = 60
 
-
-# Origin rebase
-const rebase_limit_margin = 5000
-const rebase_lag = 1.1
-
 # Space damp values.
 const global_linear_damp = 1.2
 const global_angular_damp = 5
+
+# Map limiter (boundary to prevent player from flying away too much).
+const boundary_force_strength = 1e10
+const boundary_max_distance = 3e5
+const boundary_soft_margin = 1e4
 
 # Ship
 const velocity_limiter_states = 3

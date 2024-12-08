@@ -20,7 +20,6 @@ shader_param/fade_start = 30000.0
 shader_param/fade_end_mul = 5.0
 shader_param/fade_power = 2.0
 shader_param/dither_threshold = 0.5
-shader_param/noise_blend = 0.1
 shader_param/uv_blend_sharpness = 10.0
 shader_param/uv_scale = Vector3( 1, 1, 1 )
 shader_param/uv_offset = Vector3( 0, 0, 0 )

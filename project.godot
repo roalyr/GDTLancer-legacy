@@ -188,11 +188,6 @@ texture={
 "flags/repeat": 1,
 "process/fix_alpha_border": false
 }
-scene={
-"animation/import": false,
-"materials/storage": 0,
-"skins/use_named_skins": false
-}
 
 [input_devices]
 
@@ -215,26 +210,32 @@ common/physics_fps=120
 [rendering]
 
 quality/driver/driver_name="GLES2"
-quality/driver/fallback_to_gles2=true
-quality/intended_usage/framebuffer_allocation.mobile=2
+quality/intended_usage/framebuffer_allocation=3
 vram_compression/import_s3tc=false
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 misc/lossless_compression/force_png=true
-quality/directional_shadow/size=2048
-quality/shadow_atlas/size=2048
+quality/directional_shadow/size=256
+quality/directional_shadow/size.mobile=256
+quality/shadow_atlas/size=256
+quality/shadow_atlas/size.mobile=256
+quality/shadow_atlas/cubemap_size=64
+quality/shadow_atlas/quadrant_0_subdiv=0
+quality/shadow_atlas/quadrant_1_subdiv=0
+quality/shadow_atlas/quadrant_2_subdiv=0
+quality/shadow_atlas/quadrant_3_subdiv=0
 quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
-quality/reflections/high_quality_ggx.mobile=true
+quality/reflections/high_quality_ggx=false
 quality/shading/force_vertex_shading.mobile=false
 quality/shading/force_lambert_over_burley.mobile=false
 quality/shading/force_blinn_over_ggx.mobile=false
-quality/depth_prepass/enable=false
-quality/spatial_partitioning/render_tree_balance=1.0
+quality/skinning/software_skinning_fallback=false
 gles2/compatibility/disable_half_float=true
 gles2/compatibility/enable_high_float.Android=true
 gles3/shaders/max_simultaneous_compiles=1
 gles3/shaders/shader_cache_size_mb=128
 quality/lightmapping/use_bicubic_sampling=false
+quality/reflections/atlas_size=1024
 quality/depth/hdr=false
 environment/default_environment="res://Assets/Environments/Environment_default.tres"

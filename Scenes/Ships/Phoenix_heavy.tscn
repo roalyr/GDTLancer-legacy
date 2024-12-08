@@ -1,12 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Ship/Ship_package.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Models/Ships/Phoenix_heavy.glb" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Ships/Phoenix_heavy_model.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/FX/Engine_exhaust_blue.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Materials/Ships/Phoenix_heavy1.tres" type="Material" id=7]
-[ext_resource path="res://Materials/Ships/Phoenix_heavy2.tres" type="Material" id=8]
-[ext_resource path="res://Materials/Ships/Phoenix_heavy3.tres" type="Material" id=9]
-[ext_resource path="res://Materials/Ships/Phoenix_heavy4.tres" type="Material" id=10]
 
 [sub_resource type="GDScript" id=90]
 resource_name = "Ship_data"
@@ -16,7 +12,7 @@ const ship_mass = 1e5
 const engine_thrust = 5e8 # Maximum
 
 # Turning sensitivity LEFT-RIGHT | UP-DOWN | ROLL
-const torque_factor = Vector3(1e8,1e8,1e8)
+const torque_factor = Vector3(5e7,5e7,5e7)
 const autopilot_torque_factor = 1
 
 const camera_vert_offset = 6.0
@@ -49,26 +45,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.741, 0, 32.609 )
 
 [node name="Models" type="Spatial" parent="."]
 
-[node name="Phoenix_heavy" parent="Models" instance=ExtResource( 4 )]
-
-[node name="Containers" parent="Models/Phoenix_heavy" index="0"]
-material/0 = ExtResource( 8 )
-
-[node name="Asym_details" parent="Models/Phoenix_heavy" index="1"]
-material/0 = ExtResource( 8 )
-material/1 = ExtResource( 8 )
-material/2 = ExtResource( 8 )
-
-[node name="Hull" parent="Models/Phoenix_heavy" index="2"]
-material/0 = ExtResource( 8 )
-material/1 = ExtResource( 9 )
-material/2 = ExtResource( 7 )
-material/3 = ExtResource( 10 )
+[node name="Phoenix_heavy" parent="Models" instance=ExtResource( 2 )]
 
 [node name="Collision_shapes" type="Node" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Collision_shapes"]
-transform = Transform( 20, 0, 0, 0, 7, 0, 0, 0, 25, 0, 0, 0 )
+transform = Transform( 10.5, 0, 0, 0, 3.67, 0, 0, 0, 13.114, 0, 0, 0 )
 shape = SubResource( 91 )
-
-[editable path="Models/Phoenix_heavy"]

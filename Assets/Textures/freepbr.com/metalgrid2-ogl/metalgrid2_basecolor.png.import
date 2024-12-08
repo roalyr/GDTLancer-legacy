@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/metalgrid2_basecolor.png-37d430a63f1909d410da31e6dbf6b09f.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Assets/Textures/freepbr.com/metalgrid2-ogl/metalgrid2_basecolor.png"
+dest_files=[ "res://.import/metalgrid2_basecolor.png-37d430a63f1909d410da31e6dbf6b09f.stex" ]
+
+[params]
+
+compress/mode=1
+compress/lossy_quality=0.8
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=2
+flags/repeat=1
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=false
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

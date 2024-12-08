@@ -2,26 +2,26 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Pillars_environment.png-897445f9d338ab8323c0c40391c75059.stex"
+path="res://.import/metalgrid2_normal-ogl.png-39bf64dc1bd17500ee3c2d97db43fe6a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/Gradients/Pillars_environment.png"
-dest_files=[ "res://.import/Pillars_environment.png-897445f9d338ab8323c0c40391c75059.stex" ]
+source_file="res://Assets/Textures/freepbr.com/metalgrid2-ogl/metalgrid2_normal-ogl.png"
+dest_files=[ "res://.import/metalgrid2_normal-ogl.png-39bf64dc1bd17500ee3c2d97db43fe6a.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=2
 flags/repeat=1
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=false

@@ -33,7 +33,6 @@ uniform float fade_power = 2.0;
 
 // Dither threshold for the dithering effect
 uniform float dither_threshold : hint_range(0.0, 1.0) = 0.5;
-uniform float noise_blend : hint_range(0.0, 1.0) = 0.1;
 
 varying vec3 uv_triplanar_pos;
 uniform float uv_blend_sharpness : hint_range(0.0, 100.0) = 10.0;
