@@ -13,12 +13,12 @@ sun_longitude = 102.22
 sun_angle_min = 0.0
 sun_angle_max = 96.37
 sun_curve = 0.107177
-sun_energy = 4.0
 
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
 background_color = Color( 0.360784, 0.247059, 0.556863, 1 )
+ambient_light_sky_contribution = 0.05
 fog_color = Color( 0.207843, 0.423529, 0.317647, 1 )
 fog_depth_begin = 0.0
 fog_depth_end = 400000.0

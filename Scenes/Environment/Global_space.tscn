@@ -39,6 +39,10 @@ shape = SubResource( 23 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 18 )
 
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( -0.195868, 0.511234, 0.836825, 0.0323515, -0.849521, 0.526563, 0.980097, 0.130209, 0.149854, 0, 0, 0 )
+light_color = Color( 0.643137, 0.52549, 0.384314, 1 )
+
 [node name="Camera decorations" type="Position3D" parent="."]
 script = ExtResource( 16 )
 __meta__ = {
