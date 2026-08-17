@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Scripts/UI/NavLists/ItemList_nav_stars.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/UI/NavLists/ItemList_nav_constellations.gd" type="Script" id=2]
@@ -48,6 +48,100 @@ func _ready():
 	self.hide()
 	self.max_value = Constants.camera_zoom_ticks_max
 "
+
+[sub_resource type="Shader" id=6]
+code = "// FXAA Shader for Godot 3.1+ GLES2 (Improved)
+// GLES2 Compatible - Does NOT use dFdx/dFdy
+// Avoids early return for maximum GLES2 compatibility.
+// Includes tunable uniforms.
+shader_type canvas_item;
+
+// Uniforms for runtime tweaking
+uniform vec2 resolution = vec2(1366, 768); // Screen resolution (update via script)
+// Use the user's updated values and hints
+uniform float quality_reduce_min : hint_range(0.0, 0.015625) = 0.0078125; // Controls minimum reduction
+uniform float quality_reduce_mul : hint_range(0.0, 0.25) = 0.125;       // Controls overall reduction
+uniform float quality_span_max : hint_range(1.0, 16.0) = 8.0;             // Controls maximum blur span
+uniform float edge_threshold : hint_range(0.0, 0.5) = 0.03;               // Luma difference threshold for skipping FXAA
+
+// Luma calculation coefficients (standard)
+const vec3 LUMA_COEFF = vec3(0.299, 0.587, 0.114);
+
+void fragment() {
+    // Inverse viewport size (pixel size)
+    vec2 inverseVP = 1.0 / resolution;
+    // Current fragment's screen UV coordinate
+    vec2 uv = SCREEN_UV;
+
+    // --- 1. Luma Calculation ---
+    // Sample center and corner pixels
+    vec3 rgbM  = texture(SCREEN_TEXTURE, uv).rgb; // Sample center color
+    float original_alpha = texture(SCREEN_TEXTURE, uv).a; // Store original alpha
+
+    vec3 rgbNW = texture(SCREEN_TEXTURE, uv + vec2(-1.0, -1.0) * inverseVP).rgb;
+    vec3 rgbNE = texture(SCREEN_TEXTURE, uv + vec2( 1.0, -1.0) * inverseVP).rgb;
+    vec3 rgbSW = texture(SCREEN_TEXTURE, uv + vec2(-1.0,  1.0) * inverseVP).rgb;
+    vec3 rgbSE = texture(SCREEN_TEXTURE, uv + vec2( 1.0,  1.0) * inverseVP).rgb;
+
+    // Calculate luma for each sampled pixel
+    float lumaM  = dot(rgbM,  LUMA_COEFF);
+    float lumaNW = dot(rgbNW, LUMA_COEFF);
+    float lumaNE = dot(rgbNE, LUMA_COEFF);
+    float lumaSW = dot(rgbSW, LUMA_COEFF);
+    float lumaSE = dot(rgbSE, LUMA_COEFF);
+
+    // Find the min and max luma in the 3x3 neighborhood
+    float lumaMin = min(lumaM, min(min(lumaNW, lumaNE), min(lumaSW, lumaSE)));
+    float lumaMax = max(lumaM, max(max(lumaNW, lumaNE), max(lumaSW, lumaSE)));
+
+    // --- FXAA Calculation (Conditional) ---
+    vec3 finalColor = rgbM; // Default to original color
+    float lumaRange = lumaMax - lumaMin;
+
+    // Only perform FXAA calculations if contrast is high enough
+    if (lumaRange >= edge_threshold) {
+        // --- 2. Edge Detection ---
+        vec2 dir;
+        dir.x = -((lumaNW + lumaNE) - (lumaSW + lumaSE)); // Horizontal gradient
+        dir.y =  ((lumaNW + lumaSW) - (lumaNE + lumaSE)); // Vertical gradient
+
+        // --- 3. Edge Filtering ---
+        float dirReduce = max((lumaNW + lumaNE + lumaSW + lumaSE) * (0.25 * quality_reduce_mul), quality_reduce_min);
+        float invDirMin = 1.0 / (min(abs(dir.x), abs(dir.y)) + dirReduce);
+        dir = clamp(dir * invDirMin, -quality_span_max, quality_span_max) * inverseVP;
+
+        // --- 4. Subpixel Sampling ---
+        vec3 rgbA = 0.5 * (
+            texture(SCREEN_TEXTURE, uv + dir * (1.0/3.0 - 0.5)).rgb +
+            texture(SCREEN_TEXTURE, uv + dir * (2.0/3.0 - 0.5)).rgb
+        );
+        vec3 rgbB = 0.5 * rgbA + 0.25 * (
+            texture(SCREEN_TEXTURE, uv + dir * (0.0/3.0 - 0.5)).rgb +
+            texture(SCREEN_TEXTURE, uv + dir * (3.0/3.0 - 0.5)).rgb
+        );
+        float lumaB = dot(rgbB, LUMA_COEFF);
+
+        // --- 5. Final Color Selection (within FXAA block) ---
+        // Choose between filtered samples based on luma range check
+        // Assign the result to finalColor IF FXAA was performed
+        finalColor = (lumaB < lumaMin || lumaB > lumaMax) ? rgbA : rgbB;
+    }
+
+    // --- Final Output ---
+    // Assign the calculated or original color. Alpha is always passed through.
+    COLOR.rgb = finalColor;
+    COLOR.a = original_alpha;
+    // NO return statement before this point
+}
+"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/resolution = Vector2( 1366, 768 )
+shader_param/quality_reduce_min = 0.0078125
+shader_param/quality_reduce_mul = 0.125
+shader_param/quality_span_max = 8.0
+shader_param/edge_threshold = 0.03
 
 [node name="GUI_desktop" type="Control"]
 material = SubResource( 3 )
@@ -995,6 +1089,13 @@ custom_fonts/font = ExtResource( 27 )
 items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false, "Item 3", null, false, "Item 4", null, false, "Item 5", null, false, "Item 6", null, false, "Item 7", null, false, "Item 8", null, false, "Item 9", null, false, "Item 10", null, false, "Item 11", null, false, "Item 12", null, false, "Item 13", null, false, "Item 14", null, false, "Item 15", null, false, "Item 16", null, false, "Item 17", null, false, "Item 18", null, false, "Item 19", null, false, "Item 20", null, false, "Item 21", null, false, "Item 22", null, false, "Item 23", null, false, "Item 24", null, false, "Item 25", null, false, "Item 26", null, false, "Item 27", null, false, "Item 28", null, false, "Item 29", null, false, "Item 30", null, false, "Item 31", null, false, "Item 32", null, false, "Item 33", null, false, "Item 34", null, false, "Item 35", null, false, "Item 36", null, false, "Item 37", null, false, "Item 38", null, false, "Item 39", null, false, "Item 40", null, false, "Item 41", null, false, "Item 42", null, false, "Item 43", null, false, "Item 44", null, false, "Item 45", null, false, "Item 46", null, false, "Item 47", null, false, "Item 48", null, false, "Item 49", null, false, "Item 50", null, false, "Item 51", null, false, "Item 52", null, false, "Item 53", null, false, "Item 54", null, false, "Item 55", null, false, "Item 56", null, false, "Item 57", null, false, "Item 58", null, false, "Item 59", null, false, "Item 60", null, false, "Item 61", null, false, "Item 62", null, false, "Item 63", null, false, "Item 64", null, false, "Item 65", null, false, "Item 66", null, false, "Item 67", null, false, "Item 68", null, false, "Item 69", null, false, "Item 70", null, false, "Item 71", null, false, "Item 72", null, false, "Item 73", null, false, "Item 74", null, false, "Item 75", null, false, "Item 76", null, false, "Item 77", null, false, "Item 78", null, false, "Item 79", null, false, "Item 80", null, false, "Item 81", null, false, "Item 82", null, false, "Item 83", null, false, "Item 84", null, false, "Item 85", null, false, "Item 86", null, false, "Item 87", null, false, "Item 88", null, false, "Item 89", null, false, "Item 90", null, false, "Item 91", null, false, "Item 92", null, false, "Item 93", null, false, "Item 94", null, false, "Item 95", null, false, "Item 96", null, false, "Item 97", null, false, "Item 98", null, false, "Item 99", null, false, "Item 100", null, false, "Item 101", null, false, "Item 102", null, false, "Item 103", null, false, "Item 104", null, false, "Item 105", null, false, "Item 106", null, false, "Item 107", null, false, "Item 108", null, false, "Item 109", null, false, "Item 110", null, false, "Item 111", null, false, "Item 112", null, false, "Item 113", null, false, "Item 114", null, false, "Item 115", null, false, "Item 116", null, false, "Item 117", null, false, "Item 118", null, false, "Item 119", null, false, "Item 120", null, false, "Item 121", null, false, "Item 122", null, false, "Item 123", null, false, "Item 124", null, false, "Item 125", null, false, "Item 126", null, false, "Item 127", null, false, "Item 128", null, false, "Item 129", null, false, "Item 130", null, false, "Item 131", null, false, "Item 132", null, false, "Item 133", null, false, "Item 134", null, false, "Item 135", null, false, "Item 136", null, false, "Item 137", null, false, "Item 138", null, false, "Item 139", null, false, "Item 140", null, false, "Item 141", null, false, "Item 142", null, false, "Item 143", null, false, "Item 144", null, false, "Item 145", null, false, "Item 146", null, false, "Item 147", null, false, "Item 148", null, false, "Item 149", null, false, "Item 150", null, false, "Item 151", null, false, "Item 152", null, false, "Item 153", null, false, "Item 154", null, false, "Item 155", null, false, "Item 156", null, false, "Item 157", null, false, "Item 158", null, false, "Item 159", null, false, "Item 160", null, false, "Item 161", null, false, "Item 162", null, false, "Item 163", null, false, "Item 164", null, false, "Item 165", null, false, "Item 166", null, false, "Item 167", null, false, "Item 168", null, false, "Item 169", null, false, "Item 170", null, false, "Item 171", null, false ]
 allow_reselect = true
 script = ExtResource( 24 )
+
+[node name="FXAA" type="Panel" parent="."]
+material = SubResource( 7 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 22 )
 
 [connection signal="mouse_entered" from="Mouse_area_container/Mouse_area" to="." method="_on_Mouse_area_mouse_entered"]
 [connection signal="mouse_exited" from="Mouse_area_container/Mouse_area" to="." method="_on_Mouse_area_mouse_exited"]

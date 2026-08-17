@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Shaders/Solid/Solid_dither_alpha_8x8.gdshader" type="Shader" id=1]
+[ext_resource path="res://Assets/Shaders/Solid/Solid_dither_no_alpha_8x8.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/Textures/freepbr.com/futuristic-panels1-unity/futuristic-panels1-normal-ogl.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Textures/freepbr.com/futuristic-panels1-unity/futuristic-panels1-height.png" type="Texture" id=3]
 
@@ -8,9 +8,6 @@
 shader = ExtResource( 1 )
 shader_param/albedo = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
 shader_param/emission = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
-shader_param/specular = 0.5
-shader_param/metallic = 1.0
-shader_param/roughness = 0.1
 shader_param/normal_strength = 0.595
 shader_param/albedo_detail_strength = 0.628
 shader_param/albedo_detail_power = 1.0

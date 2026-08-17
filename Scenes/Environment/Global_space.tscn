@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Editor_scenes/_EDITOR_OBJECTS_.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Materials/Asteroids/Asteroids_ice.tres" type="Material" id=2]
 [ext_resource path="res://Scripts/Origin_rebase/Rebase_global.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Environment/Stellar_objects/Megastructures/Pillars.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Kinematics/Rotating_object.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Environment/Stellar_objects/Asteroids/Asteroids.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Materials/Asteroids/Planet_Rock.tres" type="Material" id=10]
@@ -49,13 +48,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Megastructure_complex_1" type="Position3D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Pillars" parent="Megastructure_complex_1" instance=ExtResource( 4 )]
-
 [node name="Orbital_elements" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 58088.5, 0 )
 __meta__ = {
@@ -63,12 +55,11 @@ __meta__ = {
 }
 
 [node name="Planet Rock" type="Position3D" parent="Orbital_elements"]
-transform = Transform( 0.744551, -0.481447, -0.462442, 0.460742, 0.871889, -0.165909, 0.483075, -0.0895386, 0.870989, 1254.15, 80255, 40051.6 )
+transform = Transform( 2233.65, -1444.35, -1387.33, 1382.23, 2615.67, -497.725, 1449.22, -268.62, 2612.97, 62501.1, -113059, 155205 )
 script = ExtResource( 17 )
 autopilot_range = 4000.0
 
 [node name="Planet" type="MeshInstance" parent="Orbital_elements/Planet Rock"]
-transform = Transform( 4000, 0, 0, 0, 4000, 0, 0, 0, 4000, 0, 0, 0 )
 material_override = ExtResource( 10 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../../..")
@@ -76,55 +67,53 @@ script = ExtResource( 6 )
 rotation_speed = 0.005
 
 [node name="StaticBody" type="StaticBody" parent="Orbital_elements/Planet Rock"]
-transform = Transform( 4000, -1.52588e-05, 0.00012207, -9.15527e-05, 4000, 3.05176e-05, -0.00012207, 3.05176e-05, 4000, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Orbital_elements/Planet Rock/StaticBody"]
 shape = SubResource( 21 )
 
 [node name="Planet Blue" type="Position3D" parent="Orbital_elements"]
-transform = Transform( -0.143788, 0.442082, -0.885375, 0.816412, 0.55862, 0.14634, 0.559282, -0.701789, -0.441244, -13356, 165101, -41431.2 )
+transform = Transform( -1437.88, 4420.82, -8853.75, 8164.12, 5586.2, 1463.4, 5592.82, -7017.89, -4412.44, -91494.2, -31315.8, -95290.8 )
 script = ExtResource( 17 )
 autopilot_range = 20000.0
 
 [node name="Planet2" type="MeshInstance" parent="Orbital_elements/Planet Blue"]
-transform = Transform( 20000, 0, 0, 0, 20000, 0, 0, 0, 20000, 0, 0, 0 )
 material_override = ExtResource( 11 )
 mesh = SubResource( 14 )
 skeleton = NodePath("../../..")
 script = ExtResource( 6 )
 
 [node name="StaticBody" type="StaticBody" parent="Orbital_elements/Planet Blue"]
-transform = Transform( 20000, 0, 0, 0.000488281, 20000, 0, 0, 0.000488281, 20000, 0, 0, 0 )
+transform = Transform( 1, -2.4414e-08, 5.96046e-16, 2.4414e-08, 1, -2.4414e-08, 0, 2.4414e-08, 1, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Orbital_elements/Planet Blue/StaticBody"]
 shape = SubResource( 22 )
 
 [node name="Asteroids_rock" parent="Orbital_elements" instance=ExtResource( 9 )]
-transform = Transform( 263.141, -67.8804, 127.08, -50.0313, 205.095, 213.15, -135.107, -208.155, 168.575, 3713.96, 109185, -26314.5 )
+transform = Transform( 263.143, -67.8807, 127.081, -50.0316, 205.097, 213.152, -135.108, -208.157, 168.577, -46389.2, -80490.2, 44940 )
 
 [node name="Asteroids" parent="Orbital_elements/Asteroids_rock" index="0"]
 material_override = ExtResource( 14 )
 
 [node name="Asteroids_rock2" parent="Orbital_elements" instance=ExtResource( 9 )]
-transform = Transform( -260.163, -123.723, -63.8562, 70.8842, -1.22097, -286.433, 119.835, -267.882, 30.7978, -11993.4, 96052, 2396.25 )
+transform = Transform( -341.49, -208.193, 6.33581, 168.45, -283.202, -226.763, 122.512, -190.925, 329.452, 41946.2, 5952.37, 4220.34 )
 
 [node name="Asteroids" parent="Orbital_elements/Asteroids_rock2" index="0"]
 material_override = ExtResource( 14 )
 
 [node name="Asteroids_rock3" parent="Orbital_elements" instance=ExtResource( 9 )]
-transform = Transform( -153.175, 76.3546, -469.795, -45.929, 488.85, 94.4265, 473.738, 72.0822, -142.746, -12066.3, 59719.2, -1045.41 )
+transform = Transform( -30.635, 15.2709, -93.959, -9.1858, 97.77, 18.8853, 94.7477, 14.4164, -28.5491, 13364.9, -42388.4, 57998.7 )
 
 [node name="Asteroids" parent="Orbital_elements/Asteroids_rock3" index="0"]
 material_override = ExtResource( 14 )
 
 [node name="Asteroids_ice" parent="Orbital_elements" instance=ExtResource( 9 )]
-transform = Transform( 600.001, 0, 0, 0, 600.001, 0, 0, 0, 599.999, -41680.5, 137872, -25598.2 )
+transform = Transform( 300, 0, 0, 0, 300, 0, 0, 0, 299.999, -40060.8, -55806.1, 74611.5 )
 
 [node name="Asteroids" parent="Orbital_elements/Asteroids_ice" index="0"]
 material_override = ExtResource( 2 )
 
 [node name="Asteroids_ice2" parent="Orbital_elements" instance=ExtResource( 9 )]
-transform = Transform( -479.418, -207.251, -295.306, 103.759, -549.578, 217.254, -345.533, 122.525, 474.968, -10781.6, 111256, 14984.9 )
+transform = Transform( -399.515, -172.709, -246.088, 86.4656, -457.981, 181.045, -287.944, 102.104, 395.806, -52406.8, -53787.8, 74595 )
 
 [node name="Asteroids" parent="Orbital_elements/Asteroids_ice2" index="0"]
 material_override = ExtResource( 2 )

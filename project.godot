@@ -146,7 +146,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GDTLancer"
+config/name="GDTLancer-legacy"
 config/description="A space game."
 run/main_scene="res://Scenes/Main.tscn"
 boot_splash/image="res://Assets/UI_images/PNG/Icon_splash/Splash.png"
@@ -210,7 +210,7 @@ common/physics_fps=120
 [rendering]
 
 quality/driver/driver_name="GLES2"
-quality/intended_usage/framebuffer_allocation=3
+quality/intended_usage/framebuffer_allocation.mobile=2
 vram_compression/import_s3tc=false
 vram_compression/import_etc=true
 vram_compression/import_etc2=false

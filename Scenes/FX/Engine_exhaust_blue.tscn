@@ -15,7 +15,7 @@
 [node name="Engine_static_shapes" type="Spatial" parent="."]
 
 [node name="Exhaust_cone_expanding2" parent="Engine_static_shapes" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, -1.80091e-08, -1, 0, 0.412, -4.37114e-08, 0, 0, 0.263 )
+transform = Transform( 0.76, 0, 0, 0, -1.41188e-08, -0.76, 0, 0.323, -3.32207e-08, 0, 0, 0.402319 )
 
 [node name="Cone_expanding" parent="Engine_static_shapes/Exhaust_cone_expanding2" index="0"]
 material_override = ExtResource( 6 )
