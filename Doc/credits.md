@@ -8,4 +8,4 @@
 - Freetousesounds: ambient samples.
 
 ## Textures
-- Crater textures: BlenderKit comunity (https://www.blenderkit.com/asset-gallery?query=author_id:2)
+- Crater textures: BlenderKit comunity (https://www.blendkit.com/asset-gallery?query=author_id:2)
