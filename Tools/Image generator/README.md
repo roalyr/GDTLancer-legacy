@@ -14,4 +14,4 @@ and execute the script with desired parameters.
 
 ### Credits 
 - Authors of data snippets and information that was used to train ChatGPT, which provided the code.
-- Crater textures used to make example training data: BlenderKit comunity (https://www.blenderkit.com/asset-gallery?query=author_id:2)
+- Crater textures used to make example training data: BlenderKit comunity (https://www.blendkit.com/asset-gallery?query=author_id:2)
